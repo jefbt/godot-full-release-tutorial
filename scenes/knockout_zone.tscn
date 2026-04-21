@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cbyeyqf3glc1g"]
+
+[ext_resource type="Script" uid="uid://c70yq6jb7u4gc" path="res://scripts/knockout_zone.gd" id="1_qepl6"]
+
+[node name="KnockoutZone" type="Area2D" unique_id=3234231]
+collision_mask = 6
+script = ExtResource("1_qepl6")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

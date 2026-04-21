@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bq8lyyw8m4ib5"
-path="res://.godot/imported/Bat-Sheet.png-836e08214e7cb44368cf9cf0d07af565.ctex"
+uid="uid://bbl1751ukqeq"
+path="res://.godot/imported/SkeletonSheet.png-3a4ca53c034a067ead0ed0b9420e2fe9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/creatures/Bat-Sheet.png"
-dest_files=["res://.godot/imported/Bat-Sheet.png-836e08214e7cb44368cf9cf0d07af565.ctex"]
+source_file="res://assets/SkeletonSheet.png"
+dest_files=["res://.godot/imported/SkeletonSheet.png-3a4ca53c034a067ead0ed0b9420e2fe9.ctex"]
 
 [params]
 

@@ -133,3 +133,10 @@ position = Vector2(40, 6)
 sprite_frames = SubResource("SpriteFrames_eaq8r")
 autoplay = "default"
 offset = Vector2(4, 4)
+
+[node name="PlayerRespawnTimer" type="Timer" parent="." unique_id=982677841]
+wait_time = 1.5
+one_shot = true
+ignore_time_scale = true
+
+[connection signal="timeout" from="PlayerRespawnTimer" to="." method="_on_player_respawn_timer_timeout"]

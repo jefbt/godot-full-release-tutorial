@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dldy162hulf01"
-path="res://.godot/imported/Slime-Sheet.png-592845a416d4f6fb7d6c05dc91168e75.ctex"
+uid="uid://b3uthxl6jh5dk"
+path="res://.godot/imported/SkeletonFollowSheet.png-8de9862bf6a9f8d9b7344c43fb9e2305.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/creatures/Slime-Sheet.png"
-dest_files=["res://.godot/imported/Slime-Sheet.png-592845a416d4f6fb7d6c05dc91168e75.ctex"]
+source_file="res://assets/SkeletonFollowSheet.png"
+dest_files=["res://.godot/imported/SkeletonFollowSheet.png-8de9862bf6a9f8d9b7344c43fb9e2305.ctex"]
 
 [params]
 

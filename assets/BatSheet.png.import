@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cuq4bjyypdwrq"
-path="res://.godot/imported/Evil Cube-Sheet.png-05fd7625602f4dd74b805bfdb24320d8.ctex"
+uid="uid://c6jnuqe004md8"
+path="res://.godot/imported/BatSheet.png-1e2417e89a7a54d5936f84ee65ce8bae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/creatures/Evil Cube-Sheet.png"
-dest_files=["res://.godot/imported/Evil Cube-Sheet.png-05fd7625602f4dd74b805bfdb24320d8.ctex"]
+source_file="res://assets/BatSheet.png"
+dest_files=["res://.godot/imported/BatSheet.png-1e2417e89a7a54d5936f84ee65ce8bae.ctex"]
 
 [params]
 
