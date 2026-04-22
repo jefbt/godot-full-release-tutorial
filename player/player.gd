@@ -2,9 +2,9 @@ class_name Player extends CharacterBody2D
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
-const SPEED = 210.0
-const JUMP_VELOCITY = 200.0
-const MAX_JUMP_TIME = 0.5
+const SPEED = 180.0
+const JUMP_VELOCITY = 222.0
+const MAX_JUMP_TIME = 0.333
 const COYOTE_TIME = 0.333
 const CREATURE_IMPULSE = -333.3
 

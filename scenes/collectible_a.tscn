@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bvfrv81d5rnmr"]
 
-[ext_resource type="Script" uid="uid://jgydqyn61xut" path="res://levels/collectible.gd" id="1_0xq15"]
+[ext_resource type="Script" uid="uid://jgydqyn61xut" path="res://scripts/collectible.gd" id="1_0xq15"]
 [ext_resource type="Texture2D" uid="uid://fa4n8kwom778" path="res://assets/Collectibles.png" id="2_jmvf4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aeirn"]

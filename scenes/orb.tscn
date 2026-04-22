@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://msquwklrtoh0"]
 
-[ext_resource type="Script" uid="uid://chr7vq60awjil" path="res://levels/orb.gd" id="1_fifoc"]
+[ext_resource type="Script" uid="uid://chr7vq60awjil" path="res://scripts/orb.gd" id="1_fifoc"]
 [ext_resource type="Texture2D" uid="uid://dfyricg1nmpm3" path="res://assets/OrbCollectedSheet.png" id="2_a44hu"]
 [ext_resource type="Texture2D" uid="uid://bbl1751ukqeq" path="res://assets/SkeletonSheet.png" id="3_srkuo"]
 [ext_resource type="Texture2D" uid="uid://b46snlp7bno70" path="res://assets/OrbSheet.png" id="4_u27yj"]

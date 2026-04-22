@@ -6,6 +6,7 @@ var is_finished: bool = false
 var can_finish: bool = false
 
 func on_get_all_collectibles() -> void:
+	# TODO add a much more nice light around the place to show it's now finshable
 	animated_sprite.play("finished")
 	can_finish = true
 
