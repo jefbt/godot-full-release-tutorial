@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c6jnuqe004md8" path="res://assets/BatSheet.png" id="2_0ovo2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ss4pg"]
-size = Vector2(10, 1)
+size = Vector2(8, 6)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8joc1"]
 atlas = ExtResource("2_0ovo2")
@@ -48,7 +48,6 @@ move_speed = 150.0
 type = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=320798231]
-position = Vector2(0, 5.5)
 shape = SubResource("RectangleShape2D_ss4pg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=695351055]

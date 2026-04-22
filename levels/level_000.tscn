@@ -393,17 +393,17 @@ position = Vector2(-112, -32)
 [node name="Collectibles" type="Node2D" parent="." unique_id=1027892920]
 
 [node name="CollectibleA" parent="Collectibles" unique_id=54983164 instance=ExtResource("3_gjl0y")]
-position = Vector2(64, 0)
+position = Vector2(48, -48)
 
 [node name="CollectibleB" parent="Collectibles" unique_id=1708593626 instance=ExtResource("4_vnv7o")]
-position = Vector2(96, 0)
+position = Vector2(80, -48)
 
 [node name="CollectibleC" parent="Collectibles" unique_id=2088059855 instance=ExtResource("5_d5x7l")]
-position = Vector2(128, 0)
+position = Vector2(112, -48)
 
 [node name="TargetA" type="Sprite2D" parent="Collectibles" unique_id=1194765498]
 z_index = 6
-position = Vector2(64, -32)
+position = Vector2(120, 24)
 texture = ExtResource("6_vnv7o")
 region_enabled = true
 region_rect = Rect2(48, 0, 16, 16)
@@ -417,7 +417,7 @@ region_rect = Rect2(0, 0, 16, 16)
 
 [node name="TargetB" type="Sprite2D" parent="Collectibles" unique_id=815550258]
 z_index = 6
-position = Vector2(96, -32)
+position = Vector2(136, 24)
 texture = ExtResource("6_vnv7o")
 region_enabled = true
 region_rect = Rect2(48, 16, 16, 16)
@@ -431,7 +431,7 @@ region_rect = Rect2(16, 0, 16, 16)
 
 [node name="TargetC" type="Sprite2D" parent="Collectibles" unique_id=150059323]
 z_index = 6
-position = Vector2(128, -32)
+position = Vector2(152, 24)
 texture = ExtResource("6_vnv7o")
 region_enabled = true
 region_rect = Rect2(48, 32, 16, 16)
@@ -444,12 +444,12 @@ region_enabled = true
 region_rect = Rect2(32, 0, 16, 16)
 
 [node name="FinishLevel" parent="Collectibles" unique_id=541091181 instance=ExtResource("9_0qmeg")]
-position = Vector2(144, 16)
+position = Vector2(128, 16)
 
 [node name="Orbs" type="Node2D" parent="." unique_id=996094191]
 
 [node name="Orb" parent="Orbs" unique_id=1682650245 instance=ExtResource("9_d7v53")]
-position = Vector2(32, 0)
+position = Vector2(64, 0)
 
 [node name="Creatures" type="Node2D" parent="." unique_id=371030618]
 

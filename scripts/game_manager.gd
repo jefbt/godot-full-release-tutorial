@@ -24,6 +24,10 @@ var player: Player = null
 var collected: Array[bool] = [false, false, false]
 var level_orbs: int = 0
 var total_orbs: int = 0
+var total_time_taken: float = 0
+var level_start_time: float = 0
+var total_knock_outs: int = 0
+var max_orbs: int = 0
 
 func update_ui() -> void:
 	animated_sprite_a.visible = collected[0]
@@ -40,12 +44,12 @@ func update_ui() -> void:
 
 func start_game() -> void:
 	await get_tree().process_frame
-	print("Start On Level " + str(start_on_level))
 	if start_on_level >= 0 and start_on_level < levels.size():
 		current_level_index = start_on_level
 		start_on_level = -1
 	get_tree().change_scene_to_file(levels[current_level_index])
 	update_ui()
+	level_start_time = Time.get_ticks_msec()
 
 func set_level(level: Level) -> void:
 	current_level = level
@@ -58,10 +62,12 @@ func set_player(_player: Player) -> void:
 	player = _player
 
 func on_level_finished() -> void:
+	total_time_taken += Time.get_ticks_msec() - level_start_time
 	# TODO make level transition/loading screen etc
 	current_level_index += 1
 	
 	if current_level_index >= 0 and current_level_index < levels.size():
+		max_orbs += current_level.max_orbs
 		current_level = null
 		player = null
 		total_orbs += level_orbs # fix this later
@@ -104,6 +110,7 @@ func player_knockout(_player: Player, _source: Node2D) -> void:
 	if player != _player:
 		_player.queue_free()
 		return
+	total_knock_outs += 1
 	player_respawn_timer.start()
 
 func respawn_player() -> void:
@@ -146,7 +153,6 @@ func get_levels(path: String, begins_with: String = "level_") -> Array[String]:
 		dir.list_dir_end()
 	else:
 		return []
-	print("Found levels: " + str(files))
 	return files
 
 func _on_player_respawn_timer_timeout() -> void:

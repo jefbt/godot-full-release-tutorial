@@ -14,6 +14,7 @@ func _ready() -> void:
 	spawn()
 
 func spawn() -> void:
+	# TODO add a pre-spawn effect (visual feedback so the player can see they coming)
 	var creature: Creature = null
 	match (type):
 		Creature.Type.FOLLOW:

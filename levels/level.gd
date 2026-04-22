@@ -6,12 +6,16 @@ class_name Level extends Node2D
 @onready var target_b_collected: Sprite2D = $Collectibles/TargetB/TargetBCollected
 @onready var target_c_collected: Sprite2D = $Collectibles/TargetC/TargetCCollected
 @onready var finish_level: FinishLevel = $Collectibles/FinishLevel
+@onready var orbs: Node2D = $Orbs
+
+var max_orbs: int = 0
 
 func _ready() -> void:
 	target_a_collected.visible = false
 	target_b_collected.visible = false
 	target_c_collected.visible = false
 	GameManager.set_level(self)
+	max_orbs = orbs.get_child_count()
 
 func on_get_all_collectibles() -> void:
 	finish_level.on_get_all_collectibles()

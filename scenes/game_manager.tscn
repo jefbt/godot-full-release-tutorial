@@ -165,7 +165,6 @@ animations = [{
 
 [node name="GameManager" type="Node" unique_id=84670456]
 script = ExtResource("1_hwd4i")
-start_on_level = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1943039409]
 
