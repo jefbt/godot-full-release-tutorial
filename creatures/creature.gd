@@ -25,20 +25,18 @@ var start_position: Vector2 = Vector2.ZERO
 func _ready() -> void:
 	if start_flipped:
 		animated_sprite.flip_h = true
+		last_direction = -1.0
 	start_position = global_position
 	match (type):
 		Type.SIMPLE:
 			follow_player = false
 			flying = false
-			motion_mode == MotionMode.MOTION_MODE_GROUNDED
 		Type.FOLLOW:
 			follow_player = true
 			flying = false
-			motion_mode == MotionMode.MOTION_MODE_GROUNDED
 		Type.FLY:
 			follow_player = false
 			flying = true
-			motion_mode == MotionMode.MOTION_MODE_FLOATING
 			animated_sprite.play("run")
 
 func _physics_process(delta: float) -> void:
@@ -81,7 +79,9 @@ func ground_movement(delta: float) -> void:
 			direction = sign(distance)
 		# Handle jump.
 		if is_on_floor():
-			if ab_distance < 20.0 or ray_wall_left.is_colliding() or ray_wall_right.is_colliding():
+			var has_not_ground: bool = not ray_cast_right.is_colliding() or not ray_cast_left.is_colliding()
+			var has_wall: bool = ray_wall_left.is_colliding() or ray_wall_right.is_colliding()
+			if ab_distance < 20.0 or has_wall or has_not_ground:
 				velocity.y = jump_velocity
 	else:
 		if last_direction > 0:

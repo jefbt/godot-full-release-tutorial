@@ -4,13 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://c14dj1tea21sl" path="res://assets/TileSet.png" id="2_hjsbj"]
 [ext_resource type="PackedScene" uid="uid://bvfrv81d5rnmr" path="res://levels/collectible_a.tscn" id="3_gjl0y"]
 [ext_resource type="PackedScene" uid="uid://700v36aan57i" path="res://player/player.tscn" id="4_5mrsh"]
+[ext_resource type="PackedScene" uid="uid://co2lhuc6eri4o" path="res://scenes/creature_despawner.tscn" id="4_mxp4k"]
 [ext_resource type="PackedScene" uid="uid://c0qj03kkopweu" path="res://levels/collectible_b.tscn" id="4_vnv7o"]
 [ext_resource type="PackedScene" uid="uid://cl6xt6c31vb5j" path="res://levels/collectible_c.tscn" id="5_d5x7l"]
 [ext_resource type="Texture2D" uid="uid://fa4n8kwom778" path="res://assets/Collectibles.png" id="6_vnv7o"]
 [ext_resource type="PackedScene" uid="uid://nmotck5qv342" path="res://creatures/creature_fly.tscn" id="8_pb8y7"]
+[ext_resource type="PackedScene" uid="uid://cs1tbwkvpbmhd" path="res://levels/finish_level.tscn" id="9_0qmeg"]
+[ext_resource type="PackedScene" uid="uid://msquwklrtoh0" path="res://levels/orb.tscn" id="9_d7v53"]
 [ext_resource type="PackedScene" uid="uid://de6ohqxdjjexv" path="res://creatures/creature_follow.tscn" id="9_hy0rb"]
 [ext_resource type="PackedScene" uid="uid://cbyeyqf3glc1g" path="res://scenes/knockout_zone.tscn" id="9_rtcij"]
 [ext_resource type="PackedScene" uid="uid://blbpijpsgemp4" path="res://creatures/creature_simple.tscn" id="10_mxp4k"]
+[ext_resource type="PackedScene" uid="uid://cf50qgg4r0p72" path="res://creatures/creature_spawner.tscn" id="11_hy0rb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cwqvt"]
 texture = ExtResource("2_hjsbj")
@@ -361,11 +365,10 @@ script = ExtResource("1_80vhd")
 [node name="TileMapBG" type="TileMapLayer" parent="TileMaps" unique_id=321672715]
 modulate = Color(0.62581384, 0.75501096, 0.8333978, 1)
 z_index = -5
-tile_map_data = PackedByteArray("AAD8//7/AAAIAAAAAAD8////AAAIAAEAAAD8/wAAAAAIAAIAAAD9//7/AAAJAAAAAAD9////AAAJAAEAAAD9/wAAAAAJAAIAAAAAAAAAAAAJAAMAAAD//wAAAAAIAAMAAAA=")
 tile_set = SubResource("TileSet_5mrsh")
 
 [node name="TileMapMain" type="TileMapLayer" parent="TileMaps" unique_id=1489349542]
-tile_map_data = PackedByteArray("AAD8/wEAAAABAAAAAAD9/wEAAAACAAAAAAD+/wEAAAABAAAAAAD//wEAAAACAAAAAAAAAAEAAAABAAAAAAABAAEAAAACAAAAAAACAAEAAAABAAAAAAADAAEAAAACAAAAAAAEAAEAAAABAAAAAAAFAAEAAAACAAAAAAAGAAEAAAABAAAAAAAHAAEAAAACAAAAAAD6/wEAAAABAAAAAAD7/wEAAAACAAAAAAD4/wEAAAABAAAAAAD5/wEAAAACAAAAAAAIAAEAAAADAAAAAAD3/wEAAAAAAAEAAAD4/wIAAAACAAEAAAD5/wIAAAACAAEAAAD6/wIAAAACAAEAAAD7/wIAAAACAAEAAAD8/wIAAAACAAEAAAD9/wIAAAACAAEAAAD+/wIAAAACAAEAAAD//wIAAAACAAEAAAAAAAIAAAACAAEAAAABAAIAAAACAAEAAAACAAIAAAACAAEAAAADAAIAAAACAAEAAAAEAAIAAAACAAEAAAAFAAIAAAACAAEAAAAGAAIAAAACAAEAAAAHAAIAAAACAAEAAAD4/wMAAAACAAEAAAD5/wMAAAACAAEAAAD6/wMAAAACAAEAAAD7/wMAAAACAAEAAAD8/wMAAAACAAEAAAD9/wMAAAACAAEAAAD+/wMAAAACAAEAAAD//wMAAAACAAEAAAAAAAMAAAACAAEAAAABAAMAAAACAAEAAAACAAMAAAACAAEAAAADAAMAAAACAAEAAAAEAAMAAAACAAEAAAAFAAMAAAACAAEAAAAGAAMAAAACAAEAAAAHAAMAAAACAAEAAAD4/wQAAAACAAEAAAD5/wQAAAACAAEAAAD6/wQAAAACAAEAAAD7/wQAAAACAAEAAAD8/wQAAAACAAEAAAD9/wQAAAACAAEAAAD+/wQAAAACAAEAAAD//wQAAAACAAEAAAAAAAQAAAACAAEAAAABAAQAAAACAAEAAAACAAQAAAACAAEAAAADAAQAAAACAAEAAAAEAAQAAAACAAEAAAAFAAQAAAACAAEAAAAGAAQAAAACAAEAAAAHAAQAAAACAAEAAAAIAAIAAAADAAEAAAAIAAMAAAADAAEAAAD3/wIAAAAAAAEAAAD3/wMAAAAAAAEAAAAIAAQAAAADAAEAAAD3/wQAAAAAAAEAAAAAAAAAAAAIAAMAAAABAAAAAAAJAAMAAAD3/wAAAAAEAAAAAAD+/wAAAAAEAAAAAAD3//r/AAAEAAAAAAD+//r/AAAEAAAAAAD+//v/AAAEAAMAAAD3//v/AAAEAAMAAAA=")
+tile_map_data = PackedByteArray("AAD8/wEAAAABAAAAAAD9/wEAAAACAAAAAAD+/wEAAAABAAAAAAD//wEAAAACAAAAAAAAAAEAAAABAAAAAAABAAEAAAACAAAAAAACAAEAAAABAAAAAAADAAEAAAACAAAAAAAEAAEAAAABAAAAAAAFAAEAAAACAAAAAAAGAAEAAAABAAAAAAAHAAEAAAACAAAAAAD6/wEAAAABAAAAAAD7/wEAAAACAAAAAAD4/wEAAAABAAAAAAD5/wEAAAACAAAAAAAIAAEAAAACAAAAAAD3/wEAAAAAAAEAAAD4/wIAAAACAAEAAAD5/wIAAAACAAEAAAD6/wIAAAACAAEAAAD7/wIAAAACAAEAAAD8/wIAAAACAAEAAAD9/wIAAAACAAEAAAD+/wIAAAACAAEAAAD//wIAAAACAAEAAAAAAAIAAAACAAEAAAABAAIAAAACAAEAAAACAAIAAAACAAEAAAADAAIAAAACAAEAAAAEAAIAAAACAAEAAAAFAAIAAAACAAEAAAAGAAIAAAACAAEAAAAHAAIAAAACAAEAAAD4/wMAAAACAAEAAAD5/wMAAAACAAEAAAD6/wMAAAACAAEAAAD7/wMAAAACAAEAAAD8/wMAAAACAAEAAAD9/wMAAAACAAEAAAD+/wMAAAACAAEAAAD//wMAAAACAAEAAAAAAAMAAAACAAEAAAABAAMAAAACAAEAAAACAAMAAAACAAEAAAADAAMAAAACAAEAAAAEAAMAAAACAAEAAAAFAAMAAAACAAEAAAAGAAMAAAACAAEAAAAHAAMAAAACAAEAAAD4/wQAAAABAAMAAAD5/wQAAAABAAMAAAD6/wQAAAABAAMAAAD7/wQAAAABAAMAAAD8/wQAAAABAAMAAAD9/wQAAAABAAMAAAD+/wQAAAABAAMAAAD//wQAAAABAAMAAAAAAAQAAAABAAMAAAABAAQAAAABAAMAAAACAAQAAAABAAMAAAADAAQAAAABAAMAAAAEAAQAAAABAAMAAAAFAAQAAAABAAMAAAAGAAQAAAABAAMAAAAHAAQAAAABAAMAAAAIAAIAAAACAAEAAAAIAAMAAAACAAIAAAD3/wIAAAAAAAEAAAD3/wMAAAAAAAEAAAAIAAQAAAACAAMAAAD3/wQAAAAAAAMAAAAAAAAAAAAIAAMAAAABAAAAAAAJAAMAAAD3/wAAAAAEAAAAAAD+/wAAAAAEAAAAAAD3//r/AAAEAAAAAAD+//r/AAAEAAAAAAD+//v/AAAEAAMAAAD3//v/AAAEAAMAAAD8//7/AAAIAAAAAAD8////AAAIAAEAAAD8/wAAAAAIAAIAAAD9//7/AAAJAAAAAAD9////AAAJAAEAAAD9/wAAAAAJAAIAAAAFAAAAAAAGAAQAAAAHAAAAAAAGAAYAAAAJAAEAAAADAAAAAAAJAAIAAAADAAEAAAAJAAMAAAADAAIAAAAJAAQAAAADAAMAAAA=")
 tile_set = SubResource("TileSet_gjl0y")
 
 [node name="Hazzards" type="Node2D" parent="." unique_id=564925332]
@@ -376,6 +379,9 @@ position = Vector2(80, 80)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hazzards/BottomKnockout" unique_id=852884461]
 shape = SubResource("WorldBoundaryShape2D_ukwr8")
+
+[node name="CreatureDespawner" parent="Hazzards" unique_id=1379400334 instance=ExtResource("4_mxp4k")]
+position = Vector2(-112, -32)
 
 [node name="Collectibles" type="Node2D" parent="." unique_id=1027892920]
 
@@ -430,6 +436,14 @@ texture = ExtResource("6_vnv7o")
 region_enabled = true
 region_rect = Rect2(32, 0, 16, 16)
 
+[node name="FinishLevel" parent="Collectibles" unique_id=541091181 instance=ExtResource("9_0qmeg")]
+position = Vector2(144, 16)
+
+[node name="Orbs" type="Node2D" parent="." unique_id=996094191]
+
+[node name="Orb" parent="Orbs" unique_id=1682650245 instance=ExtResource("9_d7v53")]
+position = Vector2(32, 0)
+
 [node name="Creatures" type="Node2D" parent="." unique_id=371030618]
 
 [node name="CreatureFly" parent="Creatures" unique_id=125111596 instance=ExtResource("8_pb8y7")]
@@ -440,5 +454,9 @@ position = Vector2(-112, 0)
 
 [node name="CreatureSimple" parent="Creatures" unique_id=756136267 instance=ExtResource("10_mxp4k")]
 position = Vector2(-64, 0)
+
+[node name="CreatureSpawner" parent="Creatures" unique_id=211396058 instance=ExtResource("11_hy0rb")]
+position = Vector2(48, -48)
+type = 2
 
 [node name="Player" parent="." unique_id=289457776 instance=ExtResource("4_5mrsh")]

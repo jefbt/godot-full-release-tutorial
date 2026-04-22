@@ -1,15 +1,17 @@
 extends Node
 
 # Collision Layers:
-#	1: ground
-#	2: player
-#	3: creatures
-#	4: collectibles
+#	1(1): ground
+#	2(2): player
+#	3(4): creatures
+#	4(8): collectibles
 
 @onready var animated_sprite_a: AnimatedSprite2D = $CanvasLayer/AnimatedSpriteA
 @onready var animated_sprite_b: AnimatedSprite2D = $CanvasLayer/AnimatedSpriteB
 @onready var animated_sprite_c: AnimatedSprite2D = $CanvasLayer/AnimatedSpriteC
 @onready var player_respawn_timer: Timer = $PlayerRespawnTimer
+@onready var animated_sprite_orbs: AnimatedSprite2D = $CanvasLayer/AnimatedSpriteOrbs
+@onready var orbs_collected_label: Label = $CanvasLayer/OrbsCollectedLabel
 
 @export var levels_path: String = "res://levels"
 
@@ -19,32 +21,82 @@ var current_level_index: int = 0
 var current_level: Level = null
 var player: Player = null
 var collected: Array[bool] = [false, false, false]
+var level_orbs: int = 0
+var total_orbs: int = 0
+
+func update_ui() -> void:
+	animated_sprite_a.visible = collected[0]
+	animated_sprite_b.visible = collected[1]
+	animated_sprite_c.visible = collected[2]
+	if level_orbs > 0:
+		animated_sprite_orbs.visible = true
+		orbs_collected_label.visible = true
+		orbs_collected_label.text = str(level_orbs)
+	else:
+		animated_sprite_orbs.visible = false
+		orbs_collected_label.visible = false
+	pass
 
 func start_game() -> void:
+	await get_tree().process_frame
 	get_tree().change_scene_to_file(levels[current_level_index])
+	update_ui()
 
 func set_level(level: Level) -> void:
 	current_level = level
+	level_orbs = 0
+	for c in collected.size():
+		collected[c] = false
+	update_ui()
 	
 func set_player(_player: Player) -> void:
 	player = _player
 
+func on_level_finished() -> void:
+	if current_level and not current_level.name.contains("_"):
+		# TODO make level transition/loading screen etc
+		current_level_index = 0
+		
+	else:
+		current_level_index += 1
+	if current_level_index >= 0 and current_level_index < levels.size():
+		current_level = null
+		player = null
+		total_orbs += level_orbs # fix this later
+		level_orbs = 0
+		for c in collected.size():
+			collected[c] = false
+		start_game()
+	else:
+		print("No more levels")
+		# TODO return to menu
+
 func collect(collectible: Collectible) -> void:
 	if collectible.type == Collectible.Type.A:
 		collected[0] = true
-		animated_sprite_a.visible = true
 	if collectible.type == Collectible.Type.B:
 		collected[1] = true
-		animated_sprite_b.visible = true
 	if collectible.type == Collectible.Type.C:
 		collected[2] = true
-		animated_sprite_c.visible = true
 	if current_level:
 		current_level.on_collected(collectible)
+		var can_finish_level: bool = true
+		for c in collected:
+			if not c:
+				can_finish_level = false
+				break
+		if can_finish_level:
+			current_level.on_get_all_collectibles()
 	# TODO player collect vfx and sfx
 	# TODO check all collectibles
 	collectible.queue_free()
-	pass
+	update_ui()
+
+func collect_orb(orb: Orb) -> void:
+	level_orbs += 1
+	update_ui()
+	await orb.animated_sprite.animation_finished
+	orb.queue_free()
 
 func player_knockout(_player: Player, _source: Node2D) -> void:
 	if player != _player:
@@ -53,7 +105,11 @@ func player_knockout(_player: Player, _source: Node2D) -> void:
 	player_respawn_timer.start()
 
 func respawn_player() -> void:
+	for c in collected.size():
+		collected[c] = false
+	level_orbs = 0
 	get_tree().reload_current_scene()
+	update_ui()
 
 func creature_knockout(creature: Creature, _source: Node2D) -> void:
 	# TODO make animation and stuff
@@ -64,6 +120,8 @@ func _ready() -> void:
 	animated_sprite_a.visible = false
 	animated_sprite_b.visible = false
 	animated_sprite_c.visible = false
+	animated_sprite_orbs.visible = false
+	orbs_collected_label.visible = false
 	levels = get_levels(levels_path)
 	if not levels:
 		levels = ["res://levels/level.tscn"]

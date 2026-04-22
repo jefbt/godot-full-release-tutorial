@@ -78,17 +78,17 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_5ju2y")
 
 [node name="RayCastRight" type="RayCast2D" parent="." unique_id=472734262]
-target_position = Vector2(9, 8)
+target_position = Vector2(10, 9)
 
 [node name="RayWallRight" type="RayCast2D" parent="." unique_id=2000549105]
-target_position = Vector2(8, 0)
+target_position = Vector2(12, 0)
 hit_from_inside = true
 
 [node name="RayCastLeft" type="RayCast2D" parent="." unique_id=333326941]
-target_position = Vector2(-9, 8)
+target_position = Vector2(-10, 9)
 
 [node name="RayWallLeft" type="RayCast2D" parent="." unique_id=400454636]
-target_position = Vector2(-8, 0)
+target_position = Vector2(-12, 0)
 hit_from_inside = true
 
 [connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]

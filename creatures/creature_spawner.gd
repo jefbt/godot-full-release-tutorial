@@ -1,0 +1,31 @@
+class_name CreatureSpawner extends Node2D
+
+@onready var spawned: Node2D = $Spawned
+
+const CREATURE_SIMPLE = preload("res://creatures/creature_simple.tscn")
+const CREATURE_FOLLOW = preload("res://creatures/creature_follow.tscn")
+const CREATURE_FLY = preload("res://creatures/creature_fly.tscn")
+
+@export var type: Creature.Type = Creature.Type.SIMPLE
+@export var max_creatures_spawned: int = 1
+@export var start_flipped: bool = true
+
+func _ready() -> void:
+	spawn()
+
+func spawn() -> void:
+	var creature: Creature = null
+	match (type):
+		Creature.Type.FOLLOW:
+			creature = CREATURE_FOLLOW.instantiate() as Creature
+		Creature.Type.FLY:
+			creature = CREATURE_FLY.instantiate() as Creature
+		_:
+			creature = CREATURE_SIMPLE.instantiate() as Creature
+	if creature:
+		creature.start_flipped = start_flipped
+		spawned.add_child(creature)
+
+func _on_spawn_timer_timeout() -> void:
+	if spawned.get_child_count() < max_creatures_spawned:
+		spawn()

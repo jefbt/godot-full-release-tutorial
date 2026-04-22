@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cf50qgg4r0p72"]
+
+[ext_resource type="Script" uid="uid://cs6buhmd0tuqh" path="res://creatures/creature_spawner.gd" id="1_3jdn3"]
+
+[node name="CreatureSpawner" type="Node2D" unique_id=211396058]
+script = ExtResource("1_3jdn3")
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=1314512255]
+wait_time = 3.0
+autostart = true
+
+[node name="Spawned" type="Node2D" parent="." unique_id=795901644]
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

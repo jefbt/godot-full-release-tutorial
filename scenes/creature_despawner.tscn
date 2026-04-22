@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://co2lhuc6eri4o"]
+
+[ext_resource type="Script" uid="uid://c70yq6jb7u4gc" path="res://scripts/knockout_zone.gd" id="1_eu3wd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f3xfy"]
+size = Vector2(96, 96)
+
+[node name="CreatureDespawner" type="Area2D" unique_id=1379400334]
+collision_mask = 4
+script = ExtResource("1_eu3wd")
+ignore_player = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=411143018]
+shape = SubResource("RectangleShape2D_f3xfy")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
