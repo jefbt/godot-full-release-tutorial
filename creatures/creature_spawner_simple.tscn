@@ -6,7 +6,7 @@
 script = ExtResource("1_1eeiu")
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=1314512255]
-wait_time = 3.0
+wait_time = 2.0
 autostart = true
 
 [node name="Spawned" type="Node2D" parent="." unique_id=795901644]

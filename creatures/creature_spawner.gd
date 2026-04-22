@@ -1,6 +1,7 @@
 class_name CreatureSpawner extends Node2D
 
 @onready var spawned: Node2D = $Spawned
+@onready var spawn_timer: Timer = $SpawnTimer
 
 const CREATURE_SIMPLE = preload("res://creatures/creature_simple.tscn")
 const CREATURE_FOLLOW = preload("res://creatures/creature_follow.tscn")
@@ -9,8 +10,11 @@ const CREATURE_FLY = preload("res://creatures/creature_fly.tscn")
 @export var type: Creature.Type = Creature.Type.SIMPLE
 @export var max_creatures_spawned: int = 1
 @export var start_flipped: bool = true
+@export var spawn_time: float = 2.0
 
 func _ready() -> void:
+	spawn_timer.stop()
+	spawn_timer.start(spawn_time)
 	spawn()
 
 func spawn() -> void:

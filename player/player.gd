@@ -28,10 +28,8 @@ func on_hit(source: Node2D) -> void:
 	GameManager.player_knockout(self, source)
 
 func knocked_out_creature() -> void:
-	if velocity.y > 0:
-		velocity.y = -JUMP_VELOCITY * 1.8
-	else:
-		velocity.y -= JUMP_VELOCITY * 0.9
+	is_jumping = false
+	velocity.y = -JUMP_VELOCITY * 1.8
 
 func _ready() -> void:
 	GameManager.set_player(self)
