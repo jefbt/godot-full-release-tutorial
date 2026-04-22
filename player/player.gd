@@ -14,6 +14,11 @@ var can_coyote_jump: bool = false
 var cancel_coyote_time: float = 0
 var is_knocked_out: bool = false
 
+var is_flying: bool = false
+var no_clip: bool = false
+var default_collision_layer: int = -1
+var default_collision_mask: int = -1
+
 func on_hit(source: Node2D) -> void:
 	collision_layer = 0
 	collision_mask = 0
@@ -32,6 +37,30 @@ func _ready() -> void:
 	GameManager.set_player(self)
 
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("fly"):
+		is_flying = not is_flying
+		if not is_flying:
+			no_clip = false
+			collision_layer = default_collision_layer
+			collision_mask = default_collision_mask
+	if Input.is_action_just_pressed("no_clip") and is_flying:
+		no_clip = not no_clip
+		if no_clip:
+			if default_collision_mask < 0:
+				default_collision_mask = collision_mask
+			if default_collision_layer < 0:
+				default_collision_layer = collision_layer
+			collision_layer = 0
+			collision_mask = 0
+			is_flying = true
+		else:
+			collision_layer = default_collision_layer
+			collision_mask = default_collision_mask
+	if is_flying:
+		velocity = Input.get_vector("move_left", "move_right", "move_up", "move_down") * SPEED * 2
+		move_and_slide()
+		return
+		
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta

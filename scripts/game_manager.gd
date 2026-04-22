@@ -14,6 +14,7 @@ extends Node
 @onready var orbs_collected_label: Label = $CanvasLayer/OrbsCollectedLabel
 
 @export var levels_path: String = "res://levels"
+@export var start_on_level: int = 1
 
 var levels: Array[String] = []
 
@@ -39,6 +40,10 @@ func update_ui() -> void:
 
 func start_game() -> void:
 	await get_tree().process_frame
+	print("Start On Level " + str(start_on_level))
+	if start_on_level >= 0 and start_on_level < levels.size():
+		current_level_index = start_on_level
+		start_on_level = -1
 	get_tree().change_scene_to_file(levels[current_level_index])
 	update_ui()
 
@@ -53,12 +58,9 @@ func set_player(_player: Player) -> void:
 	player = _player
 
 func on_level_finished() -> void:
-	if current_level and not current_level.name.contains("_"):
-		# TODO make level transition/loading screen etc
-		current_level_index = 0
-		
-	else:
-		current_level_index += 1
+	# TODO make level transition/loading screen etc
+	current_level_index += 1
+	
 	if current_level_index >= 0 and current_level_index < levels.size():
 		current_level = null
 		player = null
@@ -144,6 +146,7 @@ func get_levels(path: String, begins_with: String = "level_") -> Array[String]:
 		dir.list_dir_end()
 	else:
 		return []
+	print("Found levels: " + str(files))
 	return files
 
 func _on_player_respawn_timer_timeout() -> void:

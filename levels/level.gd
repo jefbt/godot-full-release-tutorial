@@ -1,5 +1,7 @@
 class_name Level extends Node2D
 
+@export var level_index: int = 0
+
 @onready var target_a_collected: Sprite2D = $Collectibles/TargetA/TargetACollected
 @onready var target_b_collected: Sprite2D = $Collectibles/TargetB/TargetBCollected
 @onready var target_c_collected: Sprite2D = $Collectibles/TargetC/TargetCCollected
