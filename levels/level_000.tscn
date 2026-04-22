@@ -14,7 +14,9 @@
 [ext_resource type="PackedScene" uid="uid://de6ohqxdjjexv" path="res://creatures/creature_follow.tscn" id="9_hy0rb"]
 [ext_resource type="PackedScene" uid="uid://cbyeyqf3glc1g" path="res://scenes/knockout_zone.tscn" id="9_rtcij"]
 [ext_resource type="PackedScene" uid="uid://blbpijpsgemp4" path="res://creatures/creature_simple.tscn" id="10_mxp4k"]
-[ext_resource type="PackedScene" uid="uid://cf50qgg4r0p72" path="res://creatures/creature_spawner.tscn" id="11_hy0rb"]
+[ext_resource type="PackedScene" uid="uid://6bwa4m5p2aib" path="res://creatures/creature_spawner_fly.tscn" id="14_tc3qs"]
+[ext_resource type="PackedScene" uid="uid://xyu6nj3a00x7" path="res://creatures/creature_spawner_follow.tscn" id="15_sctqg"]
+[ext_resource type="PackedScene" uid="uid://dvoekjtrijnm0" path="res://creatures/creature_spawner_simple.tscn" id="16_mr1e0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cwqvt"]
 texture = ExtResource("2_hjsbj")
@@ -393,13 +395,13 @@ position = Vector2(-112, -32)
 [node name="Collectibles" type="Node2D" parent="." unique_id=1027892920]
 
 [node name="CollectibleA" parent="Collectibles" unique_id=54983164 instance=ExtResource("3_gjl0y")]
-position = Vector2(48, -48)
+position = Vector2(-128, -32)
 
 [node name="CollectibleB" parent="Collectibles" unique_id=1708593626 instance=ExtResource("4_vnv7o")]
 position = Vector2(80, -48)
 
 [node name="CollectibleC" parent="Collectibles" unique_id=2088059855 instance=ExtResource("5_d5x7l")]
-position = Vector2(112, -48)
+position = Vector2(-16, -112)
 
 [node name="TargetA" type="Sprite2D" parent="Collectibles" unique_id=1194765498]
 z_index = 6
@@ -457,13 +459,18 @@ position = Vector2(64, 0)
 position = Vector2(-80, -80)
 
 [node name="CreatureFollow" parent="Creatures" unique_id=192619851 instance=ExtResource("9_hy0rb")]
-position = Vector2(-112, 0)
+position = Vector2(144, 0)
 
 [node name="CreatureSimple" parent="Creatures" unique_id=756136267 instance=ExtResource("10_mxp4k")]
 position = Vector2(-64, 0)
 
-[node name="CreatureSpawner" parent="Creatures" unique_id=211396058 instance=ExtResource("11_hy0rb")]
-position = Vector2(48, -48)
-type = 2
+[node name="CreatureSpawnerFly" parent="Creatures" unique_id=211396058 instance=ExtResource("14_tc3qs")]
+position = Vector2(224, -48)
+
+[node name="CreatureSpawnerFollow" parent="Creatures" unique_id=705700968 instance=ExtResource("15_sctqg")]
+position = Vector2(-144, -112)
+
+[node name="CreatureSpawnerSimple" parent="Creatures" unique_id=1409128233 instance=ExtResource("16_mr1e0")]
+position = Vector2(-112, 0)
 
 [node name="Player" parent="." unique_id=289457776 instance=ExtResource("4_5mrsh")]
