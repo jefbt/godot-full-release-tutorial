@@ -1,25 +1,25 @@
-[gd_scene format=4 uid="uid://dw6co16x7tpph"]
+[gd_scene format=4 uid="uid://cbmvbkv0y62no"]
 
-[ext_resource type="Script" uid="uid://cgnje2jbqwq26" path="res://levels/level.gd" id="1_80vhd"]
-[ext_resource type="Texture2D" uid="uid://c14dj1tea21sl" path="res://assets/TileSet.png" id="2_hjsbj"]
-[ext_resource type="PackedScene" uid="uid://bvfrv81d5rnmr" path="res://scenes/collectible_a.tscn" id="3_gjl0y"]
-[ext_resource type="PackedScene" uid="uid://700v36aan57i" path="res://player/player.tscn" id="4_5mrsh"]
-[ext_resource type="PackedScene" uid="uid://co2lhuc6eri4o" path="res://scenes/creature_despawner.tscn" id="4_mxp4k"]
-[ext_resource type="PackedScene" uid="uid://c0qj03kkopweu" path="res://scenes/collectible_b.tscn" id="4_vnv7o"]
-[ext_resource type="PackedScene" uid="uid://cl6xt6c31vb5j" path="res://scenes/collectible_c.tscn" id="5_d5x7l"]
-[ext_resource type="Texture2D" uid="uid://fa4n8kwom778" path="res://assets/Collectibles.png" id="6_vnv7o"]
-[ext_resource type="PackedScene" uid="uid://nmotck5qv342" path="res://creatures/creature_fly.tscn" id="8_pb8y7"]
-[ext_resource type="PackedScene" uid="uid://cs1tbwkvpbmhd" path="res://scenes/finish_level.tscn" id="9_0qmeg"]
-[ext_resource type="PackedScene" uid="uid://msquwklrtoh0" path="res://scenes/orb.tscn" id="9_d7v53"]
-[ext_resource type="PackedScene" uid="uid://de6ohqxdjjexv" path="res://creatures/creature_follow.tscn" id="9_hy0rb"]
-[ext_resource type="PackedScene" uid="uid://cbyeyqf3glc1g" path="res://scenes/knockout_zone.tscn" id="9_rtcij"]
-[ext_resource type="PackedScene" uid="uid://blbpijpsgemp4" path="res://creatures/creature_simple.tscn" id="10_mxp4k"]
-[ext_resource type="PackedScene" uid="uid://6bwa4m5p2aib" path="res://creatures/creature_spawner_fly.tscn" id="14_tc3qs"]
-[ext_resource type="PackedScene" uid="uid://xyu6nj3a00x7" path="res://creatures/creature_spawner_follow.tscn" id="15_sctqg"]
-[ext_resource type="PackedScene" uid="uid://dvoekjtrijnm0" path="res://creatures/creature_spawner_simple.tscn" id="16_mr1e0"]
+[ext_resource type="Script" uid="uid://cgnje2jbqwq26" path="res://levels/level.gd" id="1_clhw8"]
+[ext_resource type="Texture2D" uid="uid://c14dj1tea21sl" path="res://assets/TileSet.png" id="2_tdckn"]
+[ext_resource type="PackedScene" uid="uid://cbyeyqf3glc1g" path="res://scenes/knockout_zone.tscn" id="3_0kwam"]
+[ext_resource type="PackedScene" uid="uid://co2lhuc6eri4o" path="res://scenes/creature_despawner.tscn" id="4_ij5n7"]
+[ext_resource type="PackedScene" uid="uid://bvfrv81d5rnmr" path="res://scenes/collectible_a.tscn" id="5_ri6df"]
+[ext_resource type="PackedScene" uid="uid://c0qj03kkopweu" path="res://scenes/collectible_b.tscn" id="6_thqxh"]
+[ext_resource type="PackedScene" uid="uid://cl6xt6c31vb5j" path="res://scenes/collectible_c.tscn" id="7_stmxo"]
+[ext_resource type="Texture2D" uid="uid://fa4n8kwom778" path="res://assets/Collectibles.png" id="8_hyqf4"]
+[ext_resource type="PackedScene" uid="uid://cs1tbwkvpbmhd" path="res://scenes/finish_level.tscn" id="9_o510s"]
+[ext_resource type="PackedScene" uid="uid://msquwklrtoh0" path="res://scenes/orb.tscn" id="10_05e8n"]
+[ext_resource type="PackedScene" uid="uid://nmotck5qv342" path="res://creatures/creature_fly.tscn" id="11_rbdo7"]
+[ext_resource type="PackedScene" uid="uid://de6ohqxdjjexv" path="res://creatures/creature_follow.tscn" id="12_w0eyq"]
+[ext_resource type="PackedScene" uid="uid://blbpijpsgemp4" path="res://creatures/creature_simple.tscn" id="13_yjkjc"]
+[ext_resource type="PackedScene" uid="uid://6bwa4m5p2aib" path="res://creatures/creature_spawner_fly.tscn" id="14_8fc24"]
+[ext_resource type="PackedScene" uid="uid://xyu6nj3a00x7" path="res://creatures/creature_spawner_follow.tscn" id="15_mpqo3"]
+[ext_resource type="PackedScene" uid="uid://dvoekjtrijnm0" path="res://creatures/creature_spawner_simple.tscn" id="16_0gmn2"]
+[ext_resource type="PackedScene" uid="uid://700v36aan57i" path="res://player/player.tscn" id="17_he3yd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cwqvt"]
-texture = ExtResource("2_hjsbj")
+texture = ExtResource("2_tdckn")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -131,7 +131,7 @@ texture = ExtResource("2_hjsbj")
 sources/0 = SubResource("TileSetAtlasSource_cwqvt")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_safpt"]
-texture = ExtResource("2_hjsbj")
+texture = ExtResource("2_tdckn")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
@@ -367,7 +367,7 @@ sources/0 = SubResource("TileSetAtlasSource_safpt")
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ukwr8"]
 
 [node name="Level" type="Node2D" unique_id=197157905]
-script = ExtResource("1_80vhd")
+script = ExtResource("1_clhw8")
 
 [node name="TileMaps" type="Node2D" parent="." unique_id=1312444333]
 
@@ -383,95 +383,95 @@ tile_set = SubResource("TileSet_gjl0y")
 [node name="Hazzards" type="Node2D" parent="." unique_id=564925332]
 position = Vector2(-80, 0)
 
-[node name="BottomKnockout" parent="Hazzards" unique_id=3234231 instance=ExtResource("9_rtcij")]
+[node name="BottomKnockout" parent="Hazzards" unique_id=3234231 instance=ExtResource("3_0kwam")]
 position = Vector2(80, 80)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hazzards/BottomKnockout" unique_id=852884461]
 shape = SubResource("WorldBoundaryShape2D_ukwr8")
 
-[node name="CreatureDespawner" parent="Hazzards" unique_id=1379400334 instance=ExtResource("4_mxp4k")]
+[node name="CreatureDespawner" parent="Hazzards" unique_id=1379400334 instance=ExtResource("4_ij5n7")]
 position = Vector2(-64, -288)
 
 [node name="Collectibles" type="Node2D" parent="." unique_id=1027892920]
 
-[node name="CollectibleA" parent="Collectibles" unique_id=54983164 instance=ExtResource("3_gjl0y")]
+[node name="CollectibleA" parent="Collectibles" unique_id=54983164 instance=ExtResource("5_ri6df")]
 position = Vector2(-32, -256)
 
-[node name="CollectibleB" parent="Collectibles" unique_id=1708593626 instance=ExtResource("4_vnv7o")]
+[node name="CollectibleB" parent="Collectibles" unique_id=1708593626 instance=ExtResource("6_thqxh")]
 position = Vector2(-16, -256)
 
-[node name="CollectibleC" parent="Collectibles" unique_id=2088059855 instance=ExtResource("5_d5x7l")]
+[node name="CollectibleC" parent="Collectibles" unique_id=2088059855 instance=ExtResource("7_stmxo")]
 position = Vector2(0, -256)
 
 [node name="TargetA" type="Sprite2D" parent="Collectibles" unique_id=1194765498]
 z_index = 6
 position = Vector2(40, -248)
-texture = ExtResource("6_vnv7o")
+texture = ExtResource("8_hyqf4")
 region_enabled = true
 region_rect = Rect2(48, 0, 16, 16)
 
 [node name="TargetACollected" type="Sprite2D" parent="Collectibles/TargetA" unique_id=1718616631]
 visible = false
 z_index = 1
-texture = ExtResource("6_vnv7o")
+texture = ExtResource("8_hyqf4")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
 [node name="TargetB" type="Sprite2D" parent="Collectibles" unique_id=815550258]
 z_index = 6
 position = Vector2(56, -248)
-texture = ExtResource("6_vnv7o")
+texture = ExtResource("8_hyqf4")
 region_enabled = true
 region_rect = Rect2(48, 16, 16, 16)
 
 [node name="TargetBCollected" type="Sprite2D" parent="Collectibles/TargetB" unique_id=2094771133]
 visible = false
 z_index = 1
-texture = ExtResource("6_vnv7o")
+texture = ExtResource("8_hyqf4")
 region_enabled = true
 region_rect = Rect2(16, 0, 16, 16)
 
 [node name="TargetC" type="Sprite2D" parent="Collectibles" unique_id=150059323]
 z_index = 6
 position = Vector2(72, -248)
-texture = ExtResource("6_vnv7o")
+texture = ExtResource("8_hyqf4")
 region_enabled = true
 region_rect = Rect2(48, 32, 16, 16)
 
 [node name="TargetCCollected" type="Sprite2D" parent="Collectibles/TargetC" unique_id=1419222943]
 visible = false
 z_index = 1
-texture = ExtResource("6_vnv7o")
+texture = ExtResource("8_hyqf4")
 region_enabled = true
 region_rect = Rect2(32, 0, 16, 16)
 
-[node name="FinishLevel" parent="Collectibles" unique_id=541091181 instance=ExtResource("9_0qmeg")]
+[node name="FinishLevel" parent="Collectibles" unique_id=541091181 instance=ExtResource("9_o510s")]
 position = Vector2(48, -256)
 
 [node name="Orbs" type="Node2D" parent="." unique_id=996094191]
 
-[node name="Orb" parent="Orbs" unique_id=1682650245 instance=ExtResource("9_d7v53")]
+[node name="Orb" parent="Orbs" unique_id=1682650245 instance=ExtResource("10_05e8n")]
 position = Vector2(128, -256)
 
 [node name="Creatures" type="Node2D" parent="." unique_id=371030618]
 
-[node name="CreatureFly" parent="Creatures" unique_id=125111596 instance=ExtResource("8_pb8y7")]
+[node name="CreatureFly" parent="Creatures" unique_id=125111596 instance=ExtResource("11_rbdo7")]
 position = Vector2(-64, -320)
 start_flipped = true
 
-[node name="CreatureFollow" parent="Creatures" unique_id=192619851 instance=ExtResource("9_hy0rb")]
+[node name="CreatureFollow" parent="Creatures" unique_id=192619851 instance=ExtResource("12_w0eyq")]
 position = Vector2(-144, -352)
 
-[node name="CreatureSimple" parent="Creatures" unique_id=756136267 instance=ExtResource("10_mxp4k")]
+[node name="CreatureSimple" parent="Creatures" unique_id=756136267 instance=ExtResource("13_yjkjc")]
 position = Vector2(-160, -352)
 
-[node name="CreatureSpawnerFly" parent="Creatures" unique_id=211396058 instance=ExtResource("14_tc3qs")]
+[node name="CreatureSpawnerFly" parent="Creatures" unique_id=211396058 instance=ExtResource("14_8fc24")]
 position = Vector2(-80, -320)
 
-[node name="CreatureSpawnerFollow" parent="Creatures" unique_id=705700968 instance=ExtResource("15_sctqg")]
+[node name="CreatureSpawnerFollow" parent="Creatures" unique_id=705700968 instance=ExtResource("15_mpqo3")]
 position = Vector2(-128, -352)
 
-[node name="CreatureSpawnerSimple" parent="Creatures" unique_id=1409128233 instance=ExtResource("16_mr1e0")]
+[node name="CreatureSpawnerSimple" parent="Creatures" unique_id=1409128233 instance=ExtResource("16_0gmn2")]
 position = Vector2(-176, -352)
 
-[node name="Player" parent="." unique_id=289457776 instance=ExtResource("4_5mrsh")]
+[node name="Player" parent="." unique_id=289457776 instance=ExtResource("17_he3yd")]
