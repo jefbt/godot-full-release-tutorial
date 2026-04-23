@@ -7,7 +7,7 @@ script = ExtResource("1_3jdn3")
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=1314512255]
 wait_time = 2.0
-autostart = true
+one_shot = true
 
 [node name="Spawned" type="Node2D" parent="." unique_id=795901644]
 

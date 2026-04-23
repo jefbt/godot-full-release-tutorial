@@ -112,8 +112,20 @@ func knockout(source: Node2D = null) -> void:
 
 func _on_hit_area_body_entered(body: Node2D) -> void:
 	if body is Player:
-		var distance = global_position.y - body.global_position.y
-		if body.velocity.y > 0 or distance > PLAYER_JUMP_DISTANCE:
+		# All this was needed because it seems that sometimes it compares values after
+		# 	the frame was processed, with new velocity and position
+		var distance: float = global_position.y - body.global_position.y
+		var distance_pass: bool = distance > PLAYER_JUMP_DISTANCE
+		var position_pass: bool = body.global_position.y < global_position.y
+		var velocity_pass: bool = body.velocity.y > 0
+		var previous_position_pass: bool = body.previous_position.y < global_position.y
+		var previous_velocity_pass: bool = body.previous_velocity.y > 0
+		var previous_distance: float = global_position.y - body.previous_position.y
+		var previous_distance_pass: bool = previous_distance > PLAYER_JUMP_DISTANCE
+		var current_pass: bool = distance_pass or position_pass or velocity_pass
+		var previous_pass: bool = previous_distance_pass or previous_position_pass or previous_velocity_pass
+		var was_creature_hit: bool = current_pass or (velocity.y < 0 and previous_pass)
+		if was_creature_hit:
 			body.knocked_out_creature()
 			knockout()
 		else:

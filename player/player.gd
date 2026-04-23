@@ -19,6 +19,9 @@ var no_clip: bool = false
 var default_collision_layer: int = -1
 var default_collision_mask: int = -1
 
+var previous_velocity: Vector2 = Vector2.ZERO
+var previous_position: Vector2 = Vector2.ZERO
+
 func on_hit(source: Node2D) -> void:
 	collision_layer = 0
 	collision_mask = 0
@@ -35,6 +38,9 @@ func _ready() -> void:
 	GameManager.set_player(self)
 
 func _physics_process(delta: float) -> void:
+	previous_position = global_position
+	previous_velocity = velocity
+	
 	if Input.is_action_just_pressed("fly"):
 		is_flying = not is_flying
 		if not is_flying:

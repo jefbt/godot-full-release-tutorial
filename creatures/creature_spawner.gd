@@ -13,9 +13,11 @@ const CREATURE_FLY = preload("res://creatures/creature_fly.tscn")
 @export var spawn_time: float = 2.0
 
 func _ready() -> void:
-	spawn_timer.stop()
-	spawn_timer.start(spawn_time)
 	spawn()
+
+func _process(_delta: float) -> void:
+	if spawn_timer.is_stopped() and spawned.get_child_count() < max_creatures_spawned:
+		spawn_timer.start(spawn_time)
 
 func spawn() -> void:
 	# TODO add a pre-spawn effect (visual feedback so the player can see they coming)
