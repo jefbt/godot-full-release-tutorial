@@ -166,6 +166,7 @@ animations = [{
 [node name="GameManager" type="Node" unique_id=84670456]
 process_mode = 3
 script = ExtResource("1_hwd4i")
+levels = Array[String](["res://levels/level_000.tscn", "res://levels/level_001.tscn", "res://levels/level_002.tscn", "res://levels/level_003.tscn", "res://levels/level_004.tscn", "res://levels/level_005.tscn", "res://levels/level_006.tscn", "res://levels/level_998.tscn", "res://levels/level_999.tscn"])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1943039409]
 

@@ -25,7 +25,7 @@ extends Node
 @export var start_on_level: int = 1
 
 # Game state variables
-var levels: Array[String] = []
+@export var levels: Array[String] = []
 
 var current_level_index: int = 0
 var current_level: Level = null
@@ -191,9 +191,10 @@ func _ready() -> void:
 	animated_sprite_c.visible = false
 	animated_sprite_orbs.visible = false
 	orbs_collected_label.visible = false
-	levels = get_levels(levels_path)
-	if not levels:
-		levels = ["res://levels/level.tscn"]
+	if not levels or levels.is_empty():
+		levels = get_levels(levels_path)
+		if not levels or levels.is_empty():
+			levels = ["res://levels/level.tscn"]
 	for i in levels.size():
 		orbs_per_level.append(0)
 		orbs_on_level.append(0)
