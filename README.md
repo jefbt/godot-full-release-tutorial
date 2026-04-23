@@ -1,6 +1,8 @@
 # godot-full-release-tutorial
 
-Godot Tutorial from nothing to a released game
+Godot Tutorial from nothing to a released game.
+You can find a demo on [itch.io](https://tomazellagames.itch.io/full-release-tutorial)
+Source code should be found on [Github](https://github.com/jefbt/godot-full-release-tutorial)
 
 ## Installation
 
