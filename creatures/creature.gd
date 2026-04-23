@@ -1,3 +1,5 @@
+# Base class for all creatures in the game. Handles different types of creature behavior
+# including simple patrolling, following the player, and flying movement.
 class_name Creature extends CharacterBody2D
 
 @onready var hit_area: Area2D = $HitArea
@@ -7,21 +9,30 @@ class_name Creature extends CharacterBody2D
 @onready var ray_wall_right: RayCast2D = $RayWallRight
 @onready var ray_wall_left: RayCast2D = $RayWallLeft
 
+# Distance threshold for determining if player jumped on creature
 const PLAYER_JUMP_DISTANCE = 8
 
+# Different types of creature behavior
 enum Type { SIMPLE, FOLLOW, FLY }
 
+# Movement speed of the creature
 @export var move_speed: float = 80.0
+# Vertical velocity when jumping
 @export var jump_velocity: float = -240.0
+# Type of creature behavior
 @export var type: Type = Type.SIMPLE
+# Minimum distance to start following player
 @export var follow_player_min_distance: float = 80.80
+# Whether the creature starts facing left
 @export var start_flipped: bool = false
 
+# Internal state variables
 var flying: bool = false
 var follow_player: bool = false
 var last_direction: float = 1.0
 var start_position: Vector2 = Vector2.ZERO
 
+# Initialize creature based on its type and exported properties
 func _ready() -> void:
 	if start_flipped:
 		animated_sprite.flip_h = true
@@ -39,12 +50,14 @@ func _ready() -> void:
 			flying = true
 			animated_sprite.play("run")
 
+# Main physics update - handles movement based on creature type
 func _physics_process(delta: float) -> void:
 	if not flying:
 		ground_movement(delta)
 	else:
 		fly_movement(delta)
 
+# Movement logic for flying creatures - patrols horizontally and turns at walls
 func fly_movement(_delta: float) -> void:
 	var direction := 0.0
 	if last_direction > 0:
@@ -64,6 +77,7 @@ func fly_movement(_delta: float) -> void:
 	
 	move_and_slide()
 
+# Movement logic for ground-based creatures - handles gravity, patrolling, and following
 func ground_movement(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -108,9 +122,11 @@ func ground_movement(delta: float) -> void:
 	
 	move_and_slide()
 
+# Handle creature being knocked out (defeated)
 func knockout(source: Node2D = null) -> void:
 	GameManager.creature_knockout(self, source)
 
+# Detect collisions with player and determine if creature should be defeated or player hurt
 func _on_hit_area_body_entered(body: Node2D) -> void:
 	if body is Player:
 		# All this was needed because it seems that sometimes it compares values after

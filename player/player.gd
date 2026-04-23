@@ -1,14 +1,36 @@
+# Main player character class. Handles movement, jumping, animations, and interactions
+# with creatures and environment. Includes debug flying mode.
 class_name Player extends CharacterBody2D
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
+# Player movement constants
 const SPEED = 180.0
 const JUMP_VELOCITY = 222.0
 const MAX_JUMP_TIME = 0.333
 const COYOTE_TIME = 0.333
 const CREATURE_IMPULSE = -333.3
+const JUMP_VELOCITY = 222.0
+const MAX_JUMP_TIME = 0.333
+const COYOTE_TIME = 0.333
+const CREATURE_IMPULSE = -333.3
 
+# Jump and state variables
 var is_jumping: bool = false
+var max_jump_time: float = 0
+var can_coyote_jump: bool = false
+var cancel_coyote_time: float = 0
+var is_knocked_out: bool = false
+
+# Debug mode variables
+var is_flying: bool = false
+var no_clip: bool = false
+var default_collision_layer: int = -1
+var default_collision_mask: int = -1
+
+# For collision detection with creatures
+var previous_velocity: Vector2 = Vector2.ZERO
+var previous_position: Vector2 = Vector2.ZERO
 var max_jump_time: float = 0
 var can_coyote_jump: bool = false
 var cancel_coyote_time: float = 0
@@ -22,6 +44,7 @@ var default_collision_mask: int = -1
 var previous_velocity: Vector2 = Vector2.ZERO
 var previous_position: Vector2 = Vector2.ZERO
 
+# Handle player being hit by a creature - disables collision and knocks back
 func on_hit(source: Node2D) -> void:
 	collision_layer = 0
 	collision_mask = 0
@@ -30,13 +53,16 @@ func on_hit(source: Node2D) -> void:
 	is_knocked_out = true
 	GameManager.player_knockout(self, source)
 
+# Handle successful creature knockout - gives upward bounce
 func knocked_out_creature() -> void:
 	is_jumping = false
 	velocity.y = -JUMP_VELOCITY * 1.8
 
+# Initialize player and register with game manager
 func _ready() -> void:
 	GameManager.set_player(self)
 
+# Main physics update - handles debug modes, gravity, jumping, and horizontal movement
 func _physics_process(delta: float) -> void:
 	previous_position = global_position
 	previous_velocity = velocity

@@ -1,9 +1,12 @@
+# Collectible orb that adds to the player's score when touched.
 class_name Orb extends Area2D
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
+# Prevent multiple collections
 var was_collected: bool = false
 
+# Handle player collecting the orb
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player and not was_collected:
 		was_collected = true

@@ -1,3 +1,5 @@
+# Central game manager singleton. Handles level loading, UI updates, collectibles,
+# player respawn, scoring, and game state management.
 extends Node
 
 # Collision Layers:
@@ -6,6 +8,7 @@ extends Node
 #	3(4): creatures
 #	4(8): collectibles
 
+# UI element references
 @onready var animated_sprite_a: AnimatedSprite2D = $CanvasLayer/AnimatedSpriteA
 @onready var animated_sprite_b: AnimatedSprite2D = $CanvasLayer/AnimatedSpriteB
 @onready var animated_sprite_c: AnimatedSprite2D = $CanvasLayer/AnimatedSpriteC
@@ -15,9 +18,17 @@ extends Node
 @onready var pause_panel: Panel = $CanvasLayer/PausePanel
 @onready var previous_level_button: Button = $CanvasLayer/PausePanel/PreviousLevelButton
 @onready var next_level_button: Button = $CanvasLayer/PausePanel/NextLevelButton
-@onready var resume_button: Button = $CanvasLayer/PausePanel/ResumeButton
+@onready var resume_button: Button = 	$CanvasLayer/PausePanel/ResumeButton
 
+# Level configuration
 @export var levels_path: String = "res://levels"
+@export var start_on_level: int = 1
+
+# Game state variables
+var levels: Array[String] = []
+
+var current_level_index: int = 0
+var current_level: Level = null
 @export var start_on_level: int = 1
 
 var levels: Array[String] = []
@@ -25,7 +36,9 @@ var levels: Array[String] = []
 var current_level_index: int = 0
 var current_level: Level = null
 var player: Player = null
+# Collectible items state (A, B, C)
 var collected: Array[bool] = [false, false, false]
+# Scoring and statistics
 var level_orbs: int = 0
 var total_orbs: int = 0
 var total_time_taken: float = 0
@@ -37,6 +50,7 @@ var orbs_on_level: Array[int] = []
 var time_on_level: Array[float] = []
 var max_level_reached: int = 1
 
+# Update all UI elements based on current game state
 func update_ui() -> void:
 	animated_sprite_a.visible = collected[0]
 	animated_sprite_b.visible = collected[1]
@@ -64,6 +78,7 @@ func update_ui() -> void:
 	if pause_panel.visible:
 		resume_button.grab_focus()
 
+# Initialize and start the game at the specified level
 func start_game() -> void:
 	get_tree().paused = false
 	await get_tree().process_frame
@@ -73,8 +88,9 @@ func start_game() -> void:
 	get_tree().change_scene_to_file(levels[current_level_index])
 	update_ui()
 	level_start_time = Time.get_ticks_msec()
-	
 
+
+# Set the current level and reset level-specific state
 func set_level(level: Level) -> void:
 	current_level = level
 	level_orbs = 0
@@ -83,10 +99,12 @@ func set_level(level: Level) -> void:
 	if current_level_index > 0 and current_level_index < levels.size() - 2:
 		orbs_per_level[current_level_index] = current_level.max_orbs
 	update_ui()
-	
+
+# Register the player instance
 func set_player(_player: Player) -> void:
 	player = _player
 
+# Handle level completion - update stats and load next level
 func on_level_finished() -> void:
 	var level_time = Time.get_ticks_msec() - level_start_time
 	if level_time < time_on_level[current_level_index] or time_on_level[current_level_index] < 0:
@@ -121,6 +139,7 @@ func on_level_finished() -> void:
 		print("No more levels")
 		# TODO return to menu
 
+# Handle collection of A, B, C collectibles and check for level completion
 func collect(collectible: Collectible) -> void:
 	if collectible.type == Collectible.Type.A:
 		collected[0] = true
@@ -142,12 +161,14 @@ func collect(collectible: Collectible) -> void:
 	collectible.queue_free()
 	update_ui()
 
+# Handle orb collection for scoring
 func collect_orb(orb: Orb) -> void:
 	level_orbs += 1
 	update_ui()
 	await orb.animated_sprite.animation_finished
 	orb.queue_free()
 
+# Handle player being knocked out - start respawn timer
 func player_knockout(_player: Player, _source: Node2D) -> void:
 	if player != _player:
 		_player.queue_free()
@@ -155,6 +176,7 @@ func player_knockout(_player: Player, _source: Node2D) -> void:
 	total_knock_outs += 1
 	player_respawn_timer.start()
 
+# Respawn player and reset level progress
 func respawn_player() -> void:
 	for c in collected.size():
 		collected[c] = false
@@ -162,10 +184,12 @@ func respawn_player() -> void:
 	get_tree().reload_current_scene()
 	update_ui()
 
+# Handle creature being defeated
 func creature_knockout(creature: Creature, _source: Node2D) -> void:
 	# TODO make animation and stuff
 	creature.queue_free()
 
+# Initialize game manager - set up UI and load level list
 func _ready() -> void:
 	RenderingServer.set_default_clear_color(Color.CORNFLOWER_BLUE)
 	animated_sprite_a.visible = false
@@ -181,6 +205,7 @@ func _ready() -> void:
 		orbs_on_level.append(0)
 		time_on_level.append(-1)
 
+# Scan directory for level files and return sorted list
 func get_levels(path: String, begins_with: String = "level_") -> Array[String]:
 	var files: Array[String] = []
 	var dir := DirAccess.open(path)
@@ -201,14 +226,17 @@ func get_levels(path: String, begins_with: String = "level_") -> Array[String]:
 		return []
 	return files
 
+# Handle pause input
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
 		get_tree().paused = not get_tree().paused
 		update_ui()
 
+# Respawn timer expired - respawn player
 func _on_player_respawn_timer_timeout() -> void:
 	respawn_player()
 
+# Go to previous level
 func _on_previous_level_button_pressed() -> void:
 	current_level_index = max(current_level_index - 1, 1)
 	if current_level_index >= 0 and current_level_index < levels.size():
@@ -219,6 +247,7 @@ func _on_previous_level_button_pressed() -> void:
 			collected[c] = false
 		start_game()
 
+# Go to next unlocked level
 func _on_next_level_button_pressed() -> void:
 	current_level_index = min(current_level_index + 1, max_level_reached)
 	if current_level_index >= 0 and current_level_index < levels.size():
@@ -230,6 +259,7 @@ func _on_next_level_button_pressed() -> void:
 		start_game()
 
 
+# Resume game from pause
 func _on_resume_button_pressed() -> void:
 	get_tree().paused = false
 	update_ui()
