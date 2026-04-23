@@ -84,12 +84,13 @@ func ground_movement(delta: float) -> void:
 			if ab_distance < 20.0 or has_wall or has_not_ground:
 				velocity.y = jump_velocity
 	else:
-		if last_direction > 0:
-			if not ray_cast_right.is_colliding() or ray_wall_right.is_colliding():
-				last_direction = -1
-		else:
-			if not ray_cast_left.is_colliding() or ray_wall_left.is_colliding():
-				last_direction = 1
+		if is_on_floor():
+			if last_direction > 0:
+				if not ray_cast_right.is_colliding() or ray_wall_right.is_colliding():
+					last_direction = -1
+			else:
+				if not ray_cast_left.is_colliding() or ray_wall_left.is_colliding():
+					last_direction = 1
 		direction = last_direction
 	if direction != 0.0:
 		velocity.x = direction * move_speed
