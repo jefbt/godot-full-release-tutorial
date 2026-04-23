@@ -41,22 +41,22 @@ func _physics_process(delta: float) -> void:
 	previous_position = global_position
 	previous_velocity = velocity
 	
-	if Input.is_action_just_pressed("fly"):
+	if Input.is_key_pressed(KEY_ALT) and Input.is_key_pressed(KEY_SHIFT) and Input.is_action_just_pressed("fly"):
 		is_flying = not is_flying
 		if not is_flying:
 			no_clip = false
 			collision_layer = default_collision_layer
 			collision_mask = default_collision_mask
-	if Input.is_action_just_pressed("no_clip") and is_flying:
+	if Input.is_key_pressed(KEY_ALT) and Input.is_key_pressed(KEY_SHIFT) and Input.is_action_just_pressed("no_clip"):
 		no_clip = not no_clip
 		if no_clip:
+			is_flying = true
 			if default_collision_mask < 0:
 				default_collision_mask = collision_mask
 			if default_collision_layer < 0:
 				default_collision_layer = collision_layer
 			collision_layer = 0
 			collision_mask = 0
-			is_flying = true
 		else:
 			collision_layer = default_collision_layer
 			collision_mask = default_collision_mask

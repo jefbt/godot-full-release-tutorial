@@ -14,8 +14,8 @@ func _ready() -> void:
 	target_a_collected.visible = false
 	target_b_collected.visible = false
 	target_c_collected.visible = false
-	GameManager.set_level(self)
 	max_orbs = orbs.get_child_count()
+	GameManager.set_level(self)
 
 func on_get_all_collectibles() -> void:
 	finish_level.on_get_all_collectibles()

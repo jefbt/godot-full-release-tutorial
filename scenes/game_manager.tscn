@@ -164,8 +164,8 @@ animations = [{
 }]
 
 [node name="GameManager" type="Node" unique_id=84670456]
+process_mode = 3
 script = ExtResource("1_hwd4i")
-start_on_level = 6
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1943039409]
 
@@ -201,9 +201,71 @@ theme_override_fonts/font = ExtResource("4_eaq8r")
 text = "0"
 horizontal_alignment = 2
 
+[node name="PausePanel" type="Panel" parent="CanvasLayer" unique_id=22934687]
+process_mode = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PreviousLevelButton" type="Button" parent="CanvasLayer/PausePanel" unique_id=675300250]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -144.0
+offset_top = 20.0
+offset_right = -16.0
+offset_bottom = 67.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_eaq8r")
+theme_override_font_sizes/font_size = 32
+text = "-Level"
+
+[node name="NextLevelButton" type="Button" parent="CanvasLayer/PausePanel" unique_id=1432808742]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = 20.0
+offset_right = 144.0
+offset_bottom = 67.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_eaq8r")
+theme_override_font_sizes/font_size = 32
+text = "+Level"
+
+[node name="ResumeButton" type="Button" parent="CanvasLayer/PausePanel" unique_id=1829355300]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -60.0
+offset_right = 96.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_eaq8r")
+theme_override_font_sizes/font_size = 32
+text = "Resume..."
+
 [node name="PlayerRespawnTimer" type="Timer" parent="." unique_id=982677841]
 wait_time = 1.5
 one_shot = true
 ignore_time_scale = true
 
+[connection signal="pressed" from="CanvasLayer/PausePanel/PreviousLevelButton" to="." method="_on_previous_level_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PausePanel/NextLevelButton" to="." method="_on_next_level_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PausePanel/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="timeout" from="PlayerRespawnTimer" to="." method="_on_player_respawn_timer_timeout"]

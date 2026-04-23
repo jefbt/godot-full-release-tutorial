@@ -359,7 +359,7 @@ sources/0 = SubResource("TileSetAtlasSource_safpt")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ukwr8"]
 
-[node name="Level2" type="Node2D" unique_id=197157905]
+[node name="Level002" type="Node2D" unique_id=197157905]
 script = ExtResource("1_0ourt")
 level_index = 2
 

@@ -367,7 +367,7 @@ sources/0 = SubResource("TileSetAtlasSource_safpt")
 
 [node name="LevelDemoEnd" type="Node2D" unique_id=197157905]
 script = ExtResource("1_2ajb4")
-level_index = 999
+level_index = 998
 
 [node name="TileMaps" type="Node2D" parent="." unique_id=1312444333]
 
@@ -490,3 +490,11 @@ Time Taken: 0s
 Knocked out 0 times"
 vertical_alignment = 1
 script = ExtResource("17_mhqqs")
+
+[node name="LinkButton" type="LinkButton" parent="." unique_id=1993442504]
+offset_left = -48.0
+offset_top = -112.0
+offset_right = 42.0
+offset_bottom = -72.0
+text = "Social Links"
+uri = "https://tomazellagames.itch.io/"

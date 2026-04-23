@@ -364,6 +364,7 @@ sources/0 = SubResource("TileSetAtlasSource_safpt")
 
 [node name="Level004" type="Node2D" unique_id=197157905]
 script = ExtResource("1_twc00")
+level_index = 4
 
 [node name="TileMaps" type="Node2D" parent="." unique_id=1312444333]
 
