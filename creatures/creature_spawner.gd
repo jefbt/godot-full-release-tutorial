@@ -16,9 +16,6 @@ const CREATURE_FLY = preload("res://creatures/creature_fly.tscn")
 @export var max_creatures_spawned: int = 1
 @export var start_flipped: bool = true
 @export var spawn_time: float = 2.0
-@export var max_creatures_spawned: int = 1
-@export var start_flipped: bool = true
-@export var spawn_time: float = 2.0
 
 # Initialize spawner and spawn first creature
 func _ready() -> void:

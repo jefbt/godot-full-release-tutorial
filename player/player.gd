@@ -10,10 +10,6 @@ const JUMP_VELOCITY = 222.0
 const MAX_JUMP_TIME = 0.333
 const COYOTE_TIME = 0.333
 const CREATURE_IMPULSE = -333.3
-const JUMP_VELOCITY = 222.0
-const MAX_JUMP_TIME = 0.333
-const COYOTE_TIME = 0.333
-const CREATURE_IMPULSE = -333.3
 
 # Jump and state variables
 var is_jumping: bool = false
@@ -29,18 +25,6 @@ var default_collision_layer: int = -1
 var default_collision_mask: int = -1
 
 # For collision detection with creatures
-var previous_velocity: Vector2 = Vector2.ZERO
-var previous_position: Vector2 = Vector2.ZERO
-var max_jump_time: float = 0
-var can_coyote_jump: bool = false
-var cancel_coyote_time: float = 0
-var is_knocked_out: bool = false
-
-var is_flying: bool = false
-var no_clip: bool = false
-var default_collision_layer: int = -1
-var default_collision_mask: int = -1
-
 var previous_velocity: Vector2 = Vector2.ZERO
 var previous_position: Vector2 = Vector2.ZERO
 

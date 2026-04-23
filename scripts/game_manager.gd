@@ -29,12 +29,6 @@ var levels: Array[String] = []
 
 var current_level_index: int = 0
 var current_level: Level = null
-@export var start_on_level: int = 1
-
-var levels: Array[String] = []
-
-var current_level_index: int = 0
-var current_level: Level = null
 var player: Player = null
 # Collectible items state (A, B, C)
 var collected: Array[bool] = [false, false, false]

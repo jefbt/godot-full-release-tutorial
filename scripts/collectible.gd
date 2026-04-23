@@ -4,7 +4,7 @@ class_name Collectible extends Area2D
 
 @onready var animated_sprite_a: AnimatedSprite2D = $AnimatedSpriteA
 @onready var animated_sprite_b: AnimatedSprite2D = $AnimatedSpriteB
-@onready var animated_sprite_c: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animated_sprite_c: AnimatedSprite2D = $AnimatedSpriteC
 
 # Collectible types
 enum Type { A, B, C }
