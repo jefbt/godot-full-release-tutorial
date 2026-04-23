@@ -1,6 +1,50 @@
 [gd_scene format=3 uid="uid://6bwa4m5p2aib"]
 
 [ext_resource type="Script" uid="uid://cs6buhmd0tuqh" path="res://creatures/creature_spawner.gd" id="1_xpqfx"]
+[ext_resource type="Texture2D" uid="uid://dfyricg1nmpm3" path="res://assets/OrbCollectedSheet.png" id="2_m7vmm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j142q"]
+atlas = ExtResource("2_m7vmm")
+region = Rect2(32, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2h87"]
+atlas = ExtResource("2_m7vmm")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwtge"]
+atlas = ExtResource("2_m7vmm")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7oa5t"]
+atlas = ExtResource("2_m7vmm")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqeu5"]
+atlas = ExtResource("2_m7vmm")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_affs3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j142q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2h87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwtge")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7oa5t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eqeu5")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="CreatureSpawnerFly" type="Node2D" unique_id=211396058]
 script = ExtResource("1_xpqfx")
@@ -11,5 +55,10 @@ wait_time = 2.0
 one_shot = true
 
 [node name="Spawned" type="Node2D" parent="." unique_id=795901644]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=423180840]
+sprite_frames = SubResource("SpriteFrames_affs3")
+frame = 4
+frame_progress = 1.0
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
