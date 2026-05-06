@@ -3,6 +3,9 @@
 class_name Player extends CharacterBody2D
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var jump_sfx: AudioStreamPlayer2D = $JumpSFX
+@onready var knockout_sfx: AudioStreamPlayer2D = $KnockoutSFX
+@onready var creature_knockout_sfx: AudioStreamPlayer2D = $CreatureKnockoutSFX
 
 # Player movement constants
 const SPEED = 180.0
@@ -30,6 +33,7 @@ var previous_position: Vector2 = Vector2.ZERO
 
 # Handle player being hit by a creature - disables collision and knocks back
 func on_hit(source: Node2D) -> void:
+	knockout_sfx.play()
 	collision_layer = 0
 	collision_mask = 0
 	velocity.y = -JUMP_VELOCITY * 1.5
@@ -39,8 +43,10 @@ func on_hit(source: Node2D) -> void:
 
 # Handle successful creature knockout - gives upward bounce
 func knocked_out_creature() -> void:
+	creature_knockout_sfx.play()
 	is_jumping = false
 	velocity.y = -JUMP_VELOCITY * 1.8
+	# TODO audio (on creature)
 
 # Initialize player and register with game manager
 func _ready() -> void:
@@ -99,6 +105,7 @@ func _physics_process(delta: float) -> void:
 				velocity.y -= JUMP_VELOCITY
 			else:
 				velocity.y = -JUMP_VELOCITY
+			jump_sfx.play()
 		if Input.is_action_pressed("jump") and is_jumping:
 			velocity.y += delta * (-JUMP_VELOCITY) * 2.4
 			if Time.get_ticks_msec() > max_jump_time:

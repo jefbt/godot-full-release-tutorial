@@ -4,6 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://fa4n8kwom778" path="res://assets/Collectibles.png" id="2_glms7"]
 [ext_resource type="Texture2D" uid="uid://b46snlp7bno70" path="res://assets/OrbSheet.png" id="3_oo155"]
 [ext_resource type="FontFile" uid="uid://dt6pcbs01q43s" path="res://assets/PixelOperator.ttf" id="4_eaq8r"]
+[ext_resource type="Texture2D" uid="uid://bkpxau2ei6dnc" path="res://assets/tile_0073.png" id="5_q8mjp"]
+[ext_resource type="Texture2D" uid="uid://dusesik4tsp6b" path="res://assets/tile_0072.png" id="6_jdad8"]
+[ext_resource type="Texture2D" uid="uid://uyasn6ycirab" path="res://assets/tile_0070.png" id="7_k4jhu"]
+[ext_resource type="AudioStream" uid="uid://c1orrv3661chd" path="res://assets/audio/power_up.wav" id="9_30v7y"]
+[ext_resource type="AudioStream" uid="uid://b3ewdtt5l6en2" path="res://assets/audio/coin.wav" id="9_lcbjr"]
+[ext_resource type="AudioStream" uid="uid://bar17yd7g1hao" path="res://assets/audio/coin_2.wav" id="10_30v7y"]
+[ext_resource type="AudioStream" uid="uid://c4pqwka50aupy" path="res://assets/audio/coin_3.wav" id="11_5xtl8"]
+[ext_resource type="AudioStream" uid="uid://cxkilm5tg6mmk" path="res://assets/audio/coin_4.wav" id="12_cjvif"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fcr5y"]
 atlas = ExtResource("2_glms7")
@@ -166,6 +174,7 @@ animations = [{
 [node name="GameManager" type="Node" unique_id=84670456]
 process_mode = 3
 script = ExtResource("1_hwd4i")
+start_on_level = 4
 levels = Array[String](["res://levels/level_000.tscn", "res://levels/level_001.tscn", "res://levels/level_002.tscn", "res://levels/level_003.tscn", "res://levels/level_004.tscn", "res://levels/level_005.tscn", "res://levels/level_006.tscn", "res://levels/level_998.tscn", "res://levels/level_999.tscn"])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1943039409]
@@ -204,6 +213,7 @@ horizontal_alignment = 2
 
 [node name="PausePanel" type="Panel" parent="CanvasLayer" unique_id=22934687]
 process_mode = 2
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -261,10 +271,60 @@ theme_override_fonts/font = ExtResource("4_eaq8r")
 theme_override_font_sizes/font_size = 32
 text = "Resume..."
 
+[node name="TouchLeft" type="TouchScreenButton" parent="CanvasLayer" unique_id=350762869]
+modulate = Color(0.80570334, 0.91662866, 0.99999994, 0.29803923)
+position = Vector2(9.536743e-07, 128)
+scale = Vector2(5, 5)
+texture_normal = ExtResource("5_q8mjp")
+texture_pressed = ExtResource("5_q8mjp")
+action = "move_left"
+visibility_mode = 1
+
+[node name="TouchRight" type="TouchScreenButton" parent="CanvasLayer" unique_id=1344809078]
+modulate = Color(0.80570334, 0.91662866, 0.99999994, 0.29803923)
+position = Vector2(80, 128)
+scale = Vector2(5, 5)
+texture_normal = ExtResource("6_jdad8")
+texture_pressed = ExtResource("6_jdad8")
+action = "move_right"
+visibility_mode = 1
+
+[node name="TouchJump" type="TouchScreenButton" parent="CanvasLayer" unique_id=535978196]
+modulate = Color(0.80570334, 0.91662866, 0.99999994, 0.29803923)
+position = Vector2(288, 128)
+scale = Vector2(5.999999, 5)
+texture_normal = ExtResource("7_k4jhu")
+texture_pressed = ExtResource("7_k4jhu")
+action = "jump"
+visibility_mode = 1
+
 [node name="PlayerRespawnTimer" type="Timer" parent="." unique_id=982677841]
 wait_time = 1.5
 one_shot = true
 ignore_time_scale = true
+
+[node name="LevelFinishSFX" type="AudioStreamPlayer2D" parent="." unique_id=1275211944]
+stream = ExtResource("9_30v7y")
+bus = &"SFX"
+
+[node name="OrbSFX" type="AudioStreamPlayer2D" parent="." unique_id=506393966]
+stream = ExtResource("9_lcbjr")
+bus = &"SFX"
+
+[node name="GemASFX" type="AudioStreamPlayer2D" parent="." unique_id=282077722]
+stream = ExtResource("10_30v7y")
+bus = &"SFX"
+
+[node name="GemBSFX" type="AudioStreamPlayer2D" parent="." unique_id=885160699]
+stream = ExtResource("11_5xtl8")
+bus = &"SFX"
+
+[node name="GemCSFX" type="AudioStreamPlayer2D" parent="." unique_id=1639793388]
+stream = ExtResource("12_cjvif")
+bus = &"SFX"
+
+[node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=1817762191]
+current = true
 
 [connection signal="pressed" from="CanvasLayer/PausePanel/PreviousLevelButton" to="." method="_on_previous_level_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PausePanel/NextLevelButton" to="." method="_on_next_level_button_pressed"]

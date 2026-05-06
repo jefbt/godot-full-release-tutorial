@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bn1msh2kix8jv" path="res://creatures/creature.gd" id="1_eujvs"]
 [ext_resource type="Texture2D" uid="uid://b3uthxl6jh5dk" path="res://assets/SkeletonFollowSheet.png" id="2_eujvs"]
+[ext_resource type="AudioStream" uid="uid://dep37w7o1c7ag" path="res://assets/audio/jump_short.wav" id="3_7abst"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ss4pg"]
 size = Vector2(10, 1)
@@ -105,5 +106,9 @@ target_position = Vector2(-9, 8)
 [node name="RayWallLeft" type="RayCast2D" parent="." unique_id=400454636]
 target_position = Vector2(-8, 0)
 hit_from_inside = true
+
+[node name="JumpSFX" type="AudioStreamPlayer2D" parent="." unique_id=386516838]
+stream = ExtResource("3_7abst")
+bus = &"SFX"
 
 [connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]

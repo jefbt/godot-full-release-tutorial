@@ -8,6 +8,7 @@ class_name Creature extends CharacterBody2D
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
 @onready var ray_wall_right: RayCast2D = $RayWallRight
 @onready var ray_wall_left: RayCast2D = $RayWallLeft
+@onready var jump_sfx: AudioStreamPlayer2D = $JumpSFX
 
 # Distance threshold for determining if player jumped on creature
 const PLAYER_JUMP_DISTANCE = 8
@@ -97,6 +98,7 @@ func ground_movement(delta: float) -> void:
 			var has_wall: bool = ray_wall_left.is_colliding() or ray_wall_right.is_colliding()
 			if ab_distance < 20.0 or has_wall or has_not_ground:
 				velocity.y = jump_velocity
+				jump_sfx.play()
 	else:
 		if is_on_floor():
 			if last_direction > 0:

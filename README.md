@@ -39,14 +39,17 @@ However, you must include the original copyright notice and license text.
 
 This project uses the following assets:
 
-- **Pixel Operator Font** by Pixel Operator  
+- **Pixel Operator Font** by [Pixel Operator](https://www.dafont.com/pixel-operator.font?l[]=10&l[]=1)
   https://www.dafont.com/pixel-operator.font?l[]=10&l[]=1
 
-- **GPPack** by FIsherG  
+- **GPPack** by [FIsherG](https://fisherg.itch.io/gppack)
   https://fisherg.itch.io/gppack
 
-- **Platform Metroidvania Pixel Art Asset Pack** by o_lobster  
+- **Platform Metroidvania Pixel Art Asset Pack** by [o_lobster](https://o-lobster.itch.io/platformmetroidvania-pixel-art-asset-pack)
   https://o-lobster.itch.io/platformmetroidvania-pixel-art-asset-pack
 
-- **Assets Pack Cute Platform Game** by OmelPixela  
+- **Assets Pack Cute Platform Game** by [OmelPixela](https://omelpixela.itch.io/assets-pack-cute-platform-game)
   https://omelpixela.itch.io/assets-pack-cute-platform-game
+
+- **UI Cursor Pixel Pack** by [kenney](https://kenney.nl/assets/cursor-pixel-pack)
+  https://kenney.nl/assets/cursor-pixel-pack

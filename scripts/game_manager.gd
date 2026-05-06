@@ -19,6 +19,12 @@ extends Node
 @onready var previous_level_button: Button = $CanvasLayer/PausePanel/PreviousLevelButton
 @onready var next_level_button: Button = $CanvasLayer/PausePanel/NextLevelButton
 @onready var resume_button: Button = 	$CanvasLayer/PausePanel/ResumeButton
+@onready var creature_knockout_sfx: AudioStreamPlayer2D = $CreatureKnockoutSFX
+@onready var orb_sfx: AudioStreamPlayer2D = $OrbSFX
+@onready var gem_asfx: AudioStreamPlayer2D = $GemASFX
+@onready var gem_bsfx: AudioStreamPlayer2D = $GemBSFX
+@onready var gem_csfx: AudioStreamPlayer2D = $GemCSFX
+@onready var level_finish_sfx: AudioStreamPlayer2D = $LevelFinishSFX
 
 # Level configuration
 @export var levels_path: String = "res://levels"
@@ -100,6 +106,8 @@ func set_player(_player: Player) -> void:
 
 # Handle level completion - update stats and load next level
 func on_level_finished() -> void:
+	level_finish_sfx.play()
+	
 	var level_time = Time.get_ticks_msec() - level_start_time
 	if level_time < time_on_level[current_level_index] or time_on_level[current_level_index] < 0:
 		time_on_level[current_level_index] = level_time
@@ -137,10 +145,13 @@ func on_level_finished() -> void:
 func collect(collectible: Collectible) -> void:
 	if collectible.type == Collectible.Type.A:
 		collected[0] = true
+		gem_asfx.play()
 	if collectible.type == Collectible.Type.B:
 		collected[1] = true
+		gem_bsfx.play()
 	if collectible.type == Collectible.Type.C:
 		collected[2] = true
+		gem_csfx.play()
 	if current_level:
 		current_level.on_collected(collectible)
 		var can_finish_level: bool = true
@@ -157,6 +168,7 @@ func collect(collectible: Collectible) -> void:
 
 # Handle orb collection for scoring
 func collect_orb(orb: Orb) -> void:
+	orb_sfx.play()
 	level_orbs += 1
 	update_ui()
 	await orb.animated_sprite.animation_finished

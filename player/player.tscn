@@ -2,6 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://cb360mepm1fgp" path="res://assets/PlayerSheet.png" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://dslvac41s3x48" path="res://player/player.gd" id="1_rkbax"]
+[ext_resource type="AudioStream" uid="uid://cf5o0n3v2b8cc" path="res://assets/audio/jump.wav" id="3_g1dw6"]
+[ext_resource type="AudioStream" uid="uid://bjoo25k1jmjh7" path="res://assets/audio/lose.wav" id="4_yw30f"]
+[ext_resource type="AudioStream" uid="uid://dvwj33ipgkl1t" path="res://assets/audio/punch.wav" id="5_qjkh3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rkbax"]
 size = Vector2(10, 10)
@@ -131,3 +134,15 @@ frame_progress = 0.5508599
 offset = Vector2(0, -4)
 limit_bottom = 80
 position_smoothing_enabled = true
+
+[node name="JumpSFX" type="AudioStreamPlayer2D" parent="." unique_id=2072144551]
+stream = ExtResource("3_g1dw6")
+bus = &"SFX"
+
+[node name="KnockoutSFX" type="AudioStreamPlayer2D" parent="." unique_id=1165935943]
+stream = ExtResource("4_yw30f")
+bus = &"SFX"
+
+[node name="CreatureKnockoutSFX" type="AudioStreamPlayer2D" parent="." unique_id=2143421889]
+stream = ExtResource("5_qjkh3")
+bus = &"SFX"
