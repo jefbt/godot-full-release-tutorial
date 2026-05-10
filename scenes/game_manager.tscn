@@ -198,22 +198,20 @@ autoplay = "default"
 offset = Vector2(4, 4)
 
 [node name="AnimatedSpriteOrbs" type="AnimatedSprite2D" parent="CanvasLayer" unique_id=1918020712]
-position = Vector2(376, 8)
+position = Vector2(16, 32)
 sprite_frames = SubResource("SpriteFrames_aonbx")
 autoplay = "default"
 
 [node name="OrbsCollectedLabel" type="Label" parent="CanvasLayer" unique_id=506226246]
-offset_left = 331.0
-offset_top = -1.0
-offset_right = 371.0
-offset_bottom = 22.0
+offset_left = 22.0
+offset_top = 24.0
+offset_right = 62.0
+offset_bottom = 47.0
 theme_override_fonts/font = ExtResource("4_eaq8r")
 text = "0"
-horizontal_alignment = 2
 
 [node name="PausePanel" type="Panel" parent="CanvasLayer" unique_id=22934687]
 process_mode = 2
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -228,11 +226,16 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -144.0
-offset_top = 20.0
+offset_top = -12.0
 offset_right = -16.0
-offset_bottom = 67.0
+offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_top = NodePath("../ResumeButton")
+focus_neighbor_right = NodePath("../NextLevelButton")
+focus_neighbor_bottom = NodePath("../ReturnMenuButton")
+focus_next = NodePath("../NextLevelButton")
+focus_previous = NodePath("../ResumeButton")
 theme_override_fonts/font = ExtResource("4_eaq8r")
 theme_override_font_sizes/font_size = 32
 text = "-Level"
@@ -245,11 +248,15 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 16.0
-offset_top = 20.0
+offset_top = -12.0
 offset_right = 144.0
-offset_bottom = 67.0
+offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_top = NodePath("../ResumeButton")
+focus_neighbor_bottom = NodePath("../ReturnMenuButton")
+focus_next = NodePath("../ReturnMenuButton")
+focus_previous = NodePath("../PreviousLevelButton")
 theme_override_fonts/font = ExtResource("4_eaq8r")
 theme_override_font_sizes/font_size = 32
 text = "+Level"
@@ -262,14 +269,41 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -96.0
-offset_top = -60.0
+offset_top = -92.0
 offset_right = 96.0
-offset_bottom = -4.0
+offset_bottom = -36.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_left = NodePath("../PreviousLevelButton")
+focus_neighbor_right = NodePath("../NextLevelButton")
+focus_neighbor_bottom = NodePath("../ReturnMenuButton")
+focus_next = NodePath("../ReturnMenuButton")
+focus_previous = NodePath("../PreviousLevelButton")
 theme_override_fonts/font = ExtResource("4_eaq8r")
 theme_override_font_sizes/font_size = 32
 text = "Resume..."
+
+[node name="ReturnMenuButton" type="Button" parent="CanvasLayer/PausePanel" unique_id=2069771518]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = 52.0
+offset_right = 80.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_left = NodePath("../PreviousLevelButton")
+focus_neighbor_top = NodePath("../ResumeButton")
+focus_neighbor_right = NodePath("../NextLevelButton")
+focus_next = NodePath("../ResumeButton")
+focus_previous = NodePath("../NextLevelButton")
+theme_override_fonts/font = ExtResource("4_eaq8r")
+theme_override_font_sizes/font_size = 32
+text = "Main Menu"
 
 [node name="TouchLeft" type="TouchScreenButton" parent="CanvasLayer" unique_id=350762869]
 modulate = Color(0.80570334, 0.91662866, 0.99999994, 0.29803923)
@@ -333,4 +367,5 @@ bus = &"Music"
 [connection signal="pressed" from="CanvasLayer/PausePanel/PreviousLevelButton" to="." method="_on_previous_level_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PausePanel/NextLevelButton" to="." method="_on_next_level_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PausePanel/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PausePanel/ReturnMenuButton" to="." method="_on_return_menu_button_pressed"]
 [connection signal="timeout" from="PlayerRespawnTimer" to="." method="_on_player_respawn_timer_timeout"]

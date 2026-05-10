@@ -1,0 +1,140 @@
+[gd_scene format=3 uid="uid://br04m1gxtnlvu"]
+
+[ext_resource type="Script" uid="uid://dkvkm82e115yb" path="res://scripts/credits_menu.gd" id="1_27l6r"]
+[ext_resource type="Texture2D" uid="uid://n41d00c86u2j" path="res://assets/ui/Cover.png" id="2_oqgs5"]
+[ext_resource type="FontFile" uid="uid://det0te7ickyxl" path="res://assets/PixelOperator8.ttf" id="2_p38dx"]
+
+[node name="CreditsMenu" type="Control" unique_id=1093956661]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_27l6r")
+
+[node name="Cover" type="Sprite2D" parent="." unique_id=546528366]
+modulate = Color(0.446777, 0.44677705, 0.44677705, 1)
+position = Vector2(191.99998, 111.99999)
+scale = Vector2(0.304038, 0.2601626)
+texture = ExtResource("2_oqgs5")
+
+[node name="ReturnButton" type="Button" parent="." unique_id=1078091622]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -50.0
+offset_right = 48.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_p38dx")
+text = "Return"
+
+[node name="Font" type="LinkButton" parent="." unique_id=915903216]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -79.0
+offset_top = 28.0
+offset_right = 79.0
+offset_bottom = 44.0
+grow_horizontal = 2
+focus_neighbor_top = NodePath("../SFX")
+focus_previous = NodePath("../SFX")
+theme_override_fonts/font = ExtResource("2_p38dx")
+theme_override_font_sizes/font_size = 10
+text = "Font: Pixel Operator"
+uri = "https://www.dafont.com/pixel-operator.font?l[]=10&l[]=1"
+
+[node name="Art1" type="LinkButton" parent="." unique_id=330083961]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -78.0
+offset_top = 56.0
+offset_right = 78.0
+offset_bottom = 72.0
+grow_horizontal = 2
+focus_neighbor_top = NodePath("../SFX")
+focus_previous = NodePath("../SFX")
+theme_override_fonts/font = ExtResource("2_p38dx")
+theme_override_font_sizes/font_size = 10
+text = "Art: o_lobster"
+uri = "https://o-lobster.itch.io/platformmetroidvania-pixel-art-asset-pack"
+
+[node name="Art2" type="LinkButton" parent="." unique_id=38698092]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -78.0
+offset_top = 73.0
+offset_right = 78.0
+offset_bottom = 88.0
+grow_horizontal = 2
+focus_neighbor_top = NodePath("../SFX")
+focus_previous = NodePath("../SFX")
+theme_override_fonts/font = ExtResource("2_p38dx")
+theme_override_font_sizes/font_size = 10
+text = "Art: FisherG"
+uri = "https://fisherg.itch.io/gppack"
+
+[node name="Art3" type="LinkButton" parent="." unique_id=823528241]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -78.0
+offset_top = 90.0
+offset_right = 78.0
+offset_bottom = 105.0
+grow_horizontal = 2
+focus_neighbor_top = NodePath("../SFX")
+focus_previous = NodePath("../SFX")
+theme_override_fonts/font = ExtResource("2_p38dx")
+theme_override_font_sizes/font_size = 10
+text = "Art: OmelPixels"
+uri = "https://omelpixela.itch.io/assets-pack-cute-platform-game"
+
+[node name="Music" type="LinkButton" parent="." unique_id=1142197415]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -76.0
+offset_top = 114.0
+offset_right = 116.0
+offset_bottom = 131.0
+grow_horizontal = 2
+focus_neighbor_top = NodePath("../SFX")
+focus_previous = NodePath("../SFX")
+theme_override_fonts/font = ExtResource("2_p38dx")
+theme_override_font_sizes/font_size = 10
+text = "Music: Tallbeard Studios"
+uri = "https://tallbeard.itch.io/music-loop-bundle"
+
+[node name="SFX" type="LinkButton" parent="." unique_id=1055515962]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -76.0
+offset_top = 136.0
+offset_right = 96.0
+offset_bottom = 153.0
+grow_horizontal = 2
+focus_neighbor_top = NodePath(".")
+focus_previous = NodePath(".")
+theme_override_fonts/font = ExtResource("2_p38dx")
+theme_override_font_sizes/font_size = 10
+text = "Sounds: Cgeqyered Ink"
+uri = "https://ci.itch.io/400-sounds-pack"
+
+[connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]

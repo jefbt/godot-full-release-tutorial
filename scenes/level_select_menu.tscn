@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bflhfke860mmm"]
+
+[ext_resource type="Script" uid="uid://3uwj1iuioqfg" path="res://scripts/level_select_menu.gd" id="1_m4235"]
+[ext_resource type="Texture2D" uid="uid://n41d00c86u2j" path="res://assets/ui/Cover.png" id="2_cxc3u"]
+[ext_resource type="FontFile" uid="uid://det0te7ickyxl" path="res://assets/PixelOperator8.ttf" id="2_wyt36"]
+
+[node name="LevelSelectMenu" type="Control" unique_id=614427946]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m4235")
+
+[node name="Cover" type="Sprite2D" parent="." unique_id=171449862]
+modulate = Color(0.446777, 0.44677705, 0.44677705, 1)
+position = Vector2(191.99998, 111.99999)
+scale = Vector2(0.304038, 0.2601626)
+texture = ExtResource("2_cxc3u")
+
+[node name="ReturnButton" type="Button" parent="." unique_id=351638858]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -50.0
+offset_right = 48.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_wyt36")
+text = "Return"
+
+[connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]

@@ -1,6 +1,29 @@
 [gd_scene format=3 uid="uid://bhts5ku47r5u0"]
 
 [ext_resource type="Script" uid="uid://cuq8qoix3qad0" path="res://scripts/start.gd" id="1_jaeev"]
+[ext_resource type="Texture2D" uid="uid://n41d00c86u2j" path="res://assets/ui/Cover.png" id="2_u80x2"]
 
 [node name="Start" type="Node2D" unique_id=37245363]
 script = ExtResource("1_jaeev")
+
+[node name="Cover" type="Sprite2D" parent="." unique_id=1324982927]
+position = Vector2(191.99998, 111.99999)
+scale = Vector2(0.304038, 0.2601626)
+texture = ExtResource("2_u80x2")
+
+[node name="Button" type="Button" parent="." unique_id=1692958886]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 77.0
+offset_top = 154.0
+offset_right = 310.0
+offset_bottom = 185.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press key or button to start..."
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

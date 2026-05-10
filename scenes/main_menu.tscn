@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://von2j7nfgado" path="res://scripts/main_menu.gd" id="1_ekxnf"]
 [ext_resource type="Texture2D" uid="uid://cytnupr41t5te" path="res://assets/ui/AllSocialText.png" id="1_l6cm7"]
+[ext_resource type="FontFile" uid="uid://det0te7ickyxl" path="res://assets/PixelOperator8.ttf" id="2_8ln24"]
+[ext_resource type="Texture2D" uid="uid://n41d00c86u2j" path="res://assets/ui/Cover.png" id="2_rtw2f"]
+[ext_resource type="Texture2D" uid="uid://bsimv3omvd813" path="res://assets/ui/Logo-Round.png" id="3_wu84c"]
+[ext_resource type="Texture2D" uid="uid://b6w2nxw6k65ok" path="res://assets/ui/TomazellaGamesText.png" id="4_8ln24"]
 
 [node name="MainMenu" type="Control" unique_id=24863980]
 layout_mode = 3
@@ -12,16 +16,27 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ekxnf")
 
+[node name="Cover" type="Sprite2D" parent="." unique_id=1034269489]
+modulate = Color(0.446777, 0.44677705, 0.44677705, 1)
+position = Vector2(191.99998, 111.99999)
+scale = Vector2(0.304038, 0.2601626)
+texture = ExtResource("2_rtw2f")
+
 [node name="StartButton" type="Button" parent="." unique_id=1048004770]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -48.0
-offset_top = 32.0
-offset_right = 48.0
-offset_bottom = 63.0
+offset_left = -80.0
+offset_top = 48.0
+offset_right = 80.0
+offset_bottom = 96.0
 grow_horizontal = 2
+focus_neighbor_left = NodePath("../SettingsButton")
+focus_neighbor_right = NodePath("../CreditsButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+focus_next = NodePath("../SettingsButton")
+theme_override_fonts/font = ExtResource("2_8ln24")
 text = "Start Game"
 
 [node name="QuitButton" type="Button" parent="." unique_id=680523051]
@@ -32,41 +47,51 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -48.0
-offset_top = -50.0
+offset_top = -40.0
 offset_right = 48.0
-offset_bottom = -19.0
+offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_8ln24")
 text = "Quit Game"
 
 [node name="CreditsButton" type="Button" parent="." unique_id=499812354]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -48.0
-offset_top = -89.0
-offset_right = 48.0
-offset_bottom = -58.0
-grow_horizontal = 2
-grow_vertical = 0
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = 20.0
+offset_right = -48.0
+offset_bottom = 51.0
+grow_horizontal = 0
+grow_vertical = 2
+focus_neighbor_left = NodePath("../SettingsButton")
+focus_neighbor_top = NodePath("../StartButton")
+focus_neighbor_bottom = NodePath("../LinkButtonTree")
+focus_next = NodePath("../LinkButtonItch")
+focus_previous = NodePath("../SettingsButton")
+theme_override_fonts/font = ExtResource("2_8ln24")
 text = "Credits"
 
 [node name="SettingsButton" type="Button" parent="." unique_id=14519073]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -48.0
-offset_top = -128.0
-offset_right = 48.0
-offset_bottom = -97.0
-grow_horizontal = 2
-grow_vertical = 0
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 48.0
+offset_top = 20.0
+offset_right = 128.0
+offset_bottom = 51.0
+grow_vertical = 2
+focus_neighbor_top = NodePath("../StartButton")
+focus_neighbor_right = NodePath("../CreditsButton")
+focus_neighbor_bottom = NodePath("../LinkButtonItch")
+focus_next = NodePath("../CreditsButton")
+focus_previous = NodePath("../StartButton")
+theme_override_fonts/font = ExtResource("2_8ln24")
 text = "Settings
 "
 
@@ -75,17 +100,58 @@ position = Vector2(317, 194)
 scale = Vector2(0.06252928, 0.06252927)
 texture = ExtResource("1_l6cm7")
 
-[node name="LinkButton" type="LinkButton" parent="." unique_id=1624825369]
+[node name="LinkButtonTree" type="LinkButton" parent="." unique_id=1624825369]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -130.0
-offset_top = -43.0
+offset_left = -128.0
+offset_top = -40.0
 offset_right = -6.0
-offset_bottom = -3.0
 grow_horizontal = 0
 grow_vertical = 0
+focus_neighbor_left = NodePath("../LinkButtonItch")
+focus_neighbor_top = NodePath("../CreditsButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+focus_next = NodePath("../QuitButton")
+focus_previous = NodePath("../LinkButtonItch")
+theme_override_fonts/font = ExtResource("2_8ln24")
 uri = "https://linktr.ee/tomazellagames"
+
+[node name="LinkButtonItch" type="LinkButton" parent="." unique_id=1575796223]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -377.0
+offset_top = -39.0
+offset_right = -262.0
+offset_bottom = -4.0
+grow_horizontal = 0
+grow_vertical = 0
+focus_neighbor_top = NodePath("../SettingsButton")
+focus_neighbor_right = NodePath("../LinkButtonTree")
+focus_neighbor_bottom = NodePath("../QuitButton")
+focus_next = NodePath("../LinkButtonTree")
+focus_previous = NodePath("../CreditsButton")
+theme_override_fonts/font = ExtResource("2_8ln24")
+uri = "https://tomazellagames.itch.io/"
+
+[node name="LogoRound" type="Sprite2D" parent="." unique_id=1171804511]
+position = Vector2(21, 193.99998)
+scale = Vector2(0.022558587, 0.022558587)
+texture = ExtResource("3_wu84c")
+
+[node name="TomazellaGamesText" type="Sprite2D" parent="." unique_id=1367554843]
+position = Vector2(72, 195)
+scale = Vector2(0.1015193, 0.10151932)
+texture = ExtResource("4_8ln24")
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]

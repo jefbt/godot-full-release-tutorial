@@ -175,6 +175,8 @@ func on_level_finished(pos: Vector2) -> void:
 	if current_level_index > max_level_reached:
 		max_level_reached = current_level_index
 	
+	save_data()
+	
 	if current_level_index >= 0 and current_level_index < levels.size():
 		current_level = null
 		player = null
@@ -243,6 +245,8 @@ func creature_knockout(creature: Creature, _source: Node2D) -> void:
 
 # Initialize game manager - set up UI and load level list
 func _ready() -> void:
+	if $CanvasLayer/PausePanel.visible:
+		$CanvasLayer/PausePanel.visible = false
 	RenderingServer.set_default_clear_color(Color.CORNFLOWER_BLUE)
 	animated_sprite_a.visible = false
 	animated_sprite_b.visible = false
@@ -253,10 +257,16 @@ func _ready() -> void:
 		levels = get_levels(levels_path)
 		if not levels or levels.is_empty():
 			levels = ["res://levels/level.tscn"]
+	
 	for i in levels.size():
 		orbs_per_level.append(0)
-		orbs_on_level.append(0)
-		time_on_level.append(-1)
+	if not load_data():
+		orbs_on_level = []
+		time_on_level = []
+		for i in levels.size():
+			orbs_per_level.append(0)
+			orbs_on_level.append(0)
+			time_on_level.append(-1)
 
 # Scan directory for level files and return sorted list
 func get_levels(path: String, begins_with: String = "level_") -> Array[String]:
@@ -281,7 +291,7 @@ func get_levels(path: String, begins_with: String = "level_") -> Array[String]:
 
 # Handle pause input
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("pause"):
+	if Input.is_action_just_pressed("pause") and current_level:
 		get_tree().paused = not get_tree().paused
 		update_ui()
 
@@ -316,3 +326,88 @@ func _on_next_level_button_pressed() -> void:
 func _on_resume_button_pressed() -> void:
 	get_tree().paused = false
 	update_ui()
+
+func unload_game() -> void:
+	get_tree().paused = false
+	update_ui()
+	if not current_level:
+		return
+	# TODO unload things and save
+	pass
+
+func load_main_menu() -> void:
+	unload_game()
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	start_music()
+
+func load_credits_menu() -> void:
+	unload_game()
+	get_tree().change_scene_to_file("res://scenes/credits_menu.tscn")
+
+func load_settings_menu() -> void:
+	unload_game()
+	get_tree().change_scene_to_file("res://scenes/settings_menu.tscn")
+
+func load_level_select_menu() -> void:
+	unload_game()
+	get_tree().change_scene_to_file("res://scenes/level_select_menu.tscn")
+
+func _on_return_menu_button_pressed() -> void:
+	load_main_menu()
+	
+func start_music() -> void:
+	music_player.stop()
+	music_player.stream = random_songs.pick_random()
+	await get_tree().process_frame
+	music_player.play()
+
+func save_data() -> void:
+	var data: Dictionary = {}
+	
+	data["total_knock_outs"] = total_knock_outs
+	data["max_level_reached"] = max_level_reached
+	data["orbs"] = []
+	data["time"] = []
+	
+	for l in levels.size():
+		if orbs_on_level.size() > l:
+			data["orbs"].append(orbs_on_level[l])
+		else:
+			data["orbs"].append(0)
+		if time_on_level.size() > l:
+			data["time"].append(time_on_level[l])
+		else:
+			data["time"].append(-1)
+
+	var json_string = JSON.stringify(data)
+	var file = FileAccess.open("user://savegame.json", FileAccess.WRITE)
+	file.store_string(json_string)
+	file.close()
+
+
+func load_data() -> bool:
+	if not FileAccess.file_exists("user://savegame.json"):
+		return false
+		
+	var file = FileAccess.open("user://savegame.json", FileAccess.READ)
+	var json_string = file.get_as_text()
+	file.close()
+
+	var json = JSON.new()
+	var error = json.parse(json_string)
+
+	if error == OK:
+		var data = json.data
+		total_knock_outs = int(data["total_knock_outs"])
+		max_level_reached = int(data["max_level_reached"])
+		orbs_on_level = []
+		time_on_level = []
+		for o in data["orbs"]:
+			orbs_on_level.append(int(o))
+		for o in data["time"]:
+			time_on_level.append(float(o))
+	else:
+		print("JSON Parse Error: ", json.get_error_message())
+		return false
+	
+	return true

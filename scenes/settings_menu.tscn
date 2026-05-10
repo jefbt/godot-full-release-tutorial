@@ -1,0 +1,147 @@
+[gd_scene format=3 uid="uid://d2675l6cdw0bj"]
+
+[ext_resource type="Script" uid="uid://c8pworar5ppjk" path="res://scripts/settings_menu.gd" id="1_05p07"]
+[ext_resource type="FontFile" uid="uid://det0te7ickyxl" path="res://assets/PixelOperator8.ttf" id="2_cr101"]
+[ext_resource type="Texture2D" uid="uid://n41d00c86u2j" path="res://assets/ui/Cover.png" id="2_wswnh"]
+
+[node name="SettingsMenu" type="Control" unique_id=1942966095]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_05p07")
+
+[node name="Cover" type="Sprite2D" parent="." unique_id=1410546182]
+modulate = Color(0.446777, 0.44677705, 0.44677705, 1)
+position = Vector2(191.99998, 111.99999)
+scale = Vector2(0.304038, 0.2601626)
+texture = ExtResource("2_wswnh")
+
+[node name="ReturnButton" type="Button" parent="." unique_id=457886283]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -50.0
+offset_right = 48.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_neighbor_top = NodePath("../MusicHSlider")
+focus_previous = NodePath("../MusicHSlider")
+theme_override_fonts/font = ExtResource("2_cr101")
+text = "Return"
+
+[node name="MusicHSlider" type="HSlider" parent="." unique_id=1390701061]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -27.0
+offset_top = 105.0
+offset_right = 141.0
+offset_bottom = 143.0
+grow_horizontal = 2
+focus_neighbor_top = NodePath("../SFXHSlider")
+focus_neighbor_bottom = NodePath("../ReturnButton")
+focus_next = NodePath("../ReturnButton")
+focus_previous = NodePath("../SFXHSlider")
+max_value = 1.0
+step = 0.1
+value = 0.7
+
+[node name="Label" type="Label" parent="." unique_id=2110900741]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -122.0
+offset_top = 117.0
+offset_right = -26.0
+offset_bottom = 138.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_cr101")
+text = "Music"
+
+[node name="SFXHSlider" type="HSlider" parent="." unique_id=338041194]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -27.0
+offset_top = 68.0
+offset_right = 141.0
+offset_bottom = 106.0
+grow_horizontal = 2
+focus_neighbor_top = NodePath("../HSlider")
+focus_neighbor_bottom = NodePath("../MusicHSlider")
+focus_next = NodePath("../MusicHSlider")
+focus_previous = NodePath("../HSlider")
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="Label2" type="Label" parent="." unique_id=1996624420]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -122.0
+offset_top = 80.0
+offset_right = -26.0
+offset_bottom = 101.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_cr101")
+text = "Effects"
+
+[node name="HSlider" type="HSlider" parent="." unique_id=851500944]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -27.0
+offset_top = 29.0
+offset_right = 141.0
+offset_bottom = 67.0
+grow_horizontal = 2
+focus_neighbor_bottom = NodePath("../SFXHSlider")
+focus_next = NodePath("../SFXHSlider")
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="Label3" type="Label" parent="." unique_id=1554573604]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -122.0
+offset_top = 41.0
+offset_right = -26.0
+offset_bottom = 62.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_cr101")
+text = "Master"
+
+[node name="Label4" type="Label" parent="." unique_id=1169612271]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -48.0
+offset_top = 11.0
+offset_right = 48.0
+offset_bottom = 32.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_cr101")
+text = "Volume"
+
+[connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="value_changed" from="MusicHSlider" to="." method="_on_music_h_slider_value_changed"]
+[connection signal="value_changed" from="SFXHSlider" to="." method="_on_sfxh_slider_value_changed"]
+[connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]
