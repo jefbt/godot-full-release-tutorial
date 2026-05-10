@@ -151,7 +151,11 @@ position = Vector2(72, 195)
 scale = Vector2(0.1015193, 0.10151932)
 texture = ExtResource("4_8ln24")
 
+[connection signal="focus_entered" from="StartButton" to="." method="_on_start_button_focus_entered"]
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="focus_entered" from="QuitButton" to="." method="_on_quit_button_focus_entered"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="focus_entered" from="CreditsButton" to="." method="_on_credits_button_focus_entered"]
 [connection signal="pressed" from="CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="focus_entered" from="SettingsButton" to="." method="_on_settings_button_focus_entered"]
 [connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]

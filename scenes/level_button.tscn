@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://5tqtmwsb41nc"]
+
+[ext_resource type="FontFile" uid="uid://dibup8hrr4cnm" path="res://assets/PixelOperator8-Bold.ttf" id="1_i0sit"]
+[ext_resource type="Script" uid="uid://c3hsy5aueggbq" path="res://scripts/level_button.gd" id="1_o8246"]
+
+[node name="LevelButton" type="ColorRect" unique_id=2133527452]
+custom_minimum_size = Vector2(32, 24)
+color = Color(0.99983627, 0.9008077, 7.70092e-07, 1)
+script = ExtResource("1_o8246")
+
+[node name="Button" type="Button" parent="." unique_id=378189450]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_i0sit")
+theme_override_font_sizes/font_size = 12
+text = "1"
+
+[connection signal="focus_entered" from="Button" to="." method="_on_button_focus_entered"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

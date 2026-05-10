@@ -141,7 +141,11 @@ grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_cr101")
 text = "Volume"
 
+[connection signal="focus_entered" from="ReturnButton" to="." method="_on_return_button_focus_entered"]
 [connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="focus_entered" from="MusicHSlider" to="." method="_on_music_h_slider_focus_entered"]
 [connection signal="value_changed" from="MusicHSlider" to="." method="_on_music_h_slider_value_changed"]
+[connection signal="focus_entered" from="SFXHSlider" to="." method="_on_sfxh_slider_focus_entered"]
 [connection signal="value_changed" from="SFXHSlider" to="." method="_on_sfxh_slider_value_changed"]
+[connection signal="focus_entered" from="HSlider" to="." method="_on_h_slider_focus_entered"]
 [connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]

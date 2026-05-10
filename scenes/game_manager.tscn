@@ -13,6 +13,9 @@
 [ext_resource type="AudioStream" uid="uid://c4pqwka50aupy" path="res://assets/audio/coin_3.wav" id="11_5xtl8"]
 [ext_resource type="AudioStream" uid="uid://cxkilm5tg6mmk" path="res://assets/audio/coin_4.wav" id="12_cjvif"]
 [ext_resource type="AudioStream" uid="uid://btv7tnuwqf3j6" path="res://assets/audio/Three Red Hearts Box Jump.ogg" id="13_lcbjr"]
+[ext_resource type="AudioStream" uid="uid://cxrehmva20nah" path="res://assets/audio/cancel.wav" id="14_cjvif"]
+[ext_resource type="AudioStream" uid="uid://cuakqaya3h8pw" path="res://assets/audio/synth_confirmation.wav" id="15_ry0e6"]
+[ext_resource type="AudioStream" uid="uid://o34w0epp3suh" path="res://assets/audio/select_1.wav" id="16_pc0jn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fcr5y"]
 atlas = ExtResource("2_glms7")
@@ -212,6 +215,7 @@ text = "0"
 
 [node name="PausePanel" type="Panel" parent="CanvasLayer" unique_id=22934687]
 process_mode = 2
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -307,8 +311,8 @@ text = "Main Menu"
 
 [node name="TouchLeft" type="TouchScreenButton" parent="CanvasLayer" unique_id=350762869]
 modulate = Color(0.80570334, 0.91662866, 0.99999994, 0.29803923)
-position = Vector2(9.536743e-07, 128)
-scale = Vector2(5, 5)
+position = Vector2(12, 128)
+scale = Vector2(2, 2)
 texture_normal = ExtResource("5_q8mjp")
 texture_pressed = ExtResource("5_q8mjp")
 action = "move_left"
@@ -316,8 +320,8 @@ visibility_mode = 1
 
 [node name="TouchRight" type="TouchScreenButton" parent="CanvasLayer" unique_id=1344809078]
 modulate = Color(0.80570334, 0.91662866, 0.99999994, 0.29803923)
-position = Vector2(80, 128)
-scale = Vector2(5, 5)
+position = Vector2(96, 128)
+scale = Vector2(2, 2)
 texture_normal = ExtResource("6_jdad8")
 texture_pressed = ExtResource("6_jdad8")
 action = "move_right"
@@ -325,8 +329,8 @@ visibility_mode = 1
 
 [node name="TouchJump" type="TouchScreenButton" parent="CanvasLayer" unique_id=535978196]
 modulate = Color(0.80570334, 0.91662866, 0.99999994, 0.29803923)
-position = Vector2(288, 128)
-scale = Vector2(5.999999, 5)
+position = Vector2(295, 128)
+scale = Vector2(2, 2)
 texture_normal = ExtResource("7_k4jhu")
 texture_pressed = ExtResource("7_k4jhu")
 action = "jump"
@@ -364,8 +368,24 @@ current = true
 stream = ExtResource("13_lcbjr")
 bus = &"Music"
 
+[node name="CancelUISFX" type="AudioStreamPlayer2D" parent="." unique_id=639488070]
+stream = ExtResource("14_cjvif")
+bus = &"SFX"
+
+[node name="AcceptUISFX" type="AudioStreamPlayer2D" parent="." unique_id=1568065500]
+stream = ExtResource("15_ry0e6")
+bus = &"SFX"
+
+[node name="SelectUISFX" type="AudioStreamPlayer2D" parent="." unique_id=1985666107]
+stream = ExtResource("16_pc0jn")
+bus = &"SFX"
+
+[connection signal="focus_entered" from="CanvasLayer/PausePanel/PreviousLevelButton" to="." method="_on_previous_level_button_focus_entered"]
 [connection signal="pressed" from="CanvasLayer/PausePanel/PreviousLevelButton" to="." method="_on_previous_level_button_pressed"]
+[connection signal="focus_entered" from="CanvasLayer/PausePanel/NextLevelButton" to="." method="_on_next_level_button_focus_entered"]
 [connection signal="pressed" from="CanvasLayer/PausePanel/NextLevelButton" to="." method="_on_next_level_button_pressed"]
+[connection signal="focus_entered" from="CanvasLayer/PausePanel/ResumeButton" to="." method="_on_resume_button_focus_entered"]
 [connection signal="pressed" from="CanvasLayer/PausePanel/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="focus_entered" from="CanvasLayer/PausePanel/ReturnMenuButton" to="." method="_on_return_menu_button_focus_entered"]
 [connection signal="pressed" from="CanvasLayer/PausePanel/ReturnMenuButton" to="." method="_on_return_menu_button_pressed"]
 [connection signal="timeout" from="PlayerRespawnTimer" to="." method="_on_player_respawn_timer_timeout"]

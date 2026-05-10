@@ -35,4 +35,19 @@ grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_wyt36")
 text = "Return"
 
+[node name="FlowContainer" type="FlowContainer" parent="." unique_id=766579242]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -118.0
+offset_top = -64.0
+offset_right = 118.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="focus_entered" from="ReturnButton" to="." method="_on_return_button_focus_entered"]
 [connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]

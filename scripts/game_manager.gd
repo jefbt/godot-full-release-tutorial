@@ -25,6 +25,9 @@ extends Node
 @onready var gem_csfx: AudioStreamPlayer2D = $GemCSFX
 @onready var level_finish_sfx: AudioStreamPlayer2D = $LevelFinishSFX
 @onready var music_player: AudioStreamPlayer2D = $MusicPlayer
+@onready var cancel_uisfx: AudioStreamPlayer2D = $CancelUISFX
+@onready var accept_uisfx: AudioStreamPlayer2D = $AcceptUISFX
+@onready var select_uisfx: AudioStreamPlayer2D = $SelectUISFX
 
 const THREE_RED_HEARTS_BOX_JUMP = preload("res://assets/audio/Three Red Hearts Box Jump.ogg")
 const THREE_RED_HEARTS_CANDY = preload("res://assets/audio/Three Red Hearts Candy.ogg")
@@ -303,37 +306,43 @@ func _on_player_respawn_timer_timeout() -> void:
 func _on_previous_level_button_pressed() -> void:
 	current_level_index = max(current_level_index - 1, 1)
 	if current_level_index >= 0 and current_level_index < levels.size():
+		play_accept_ui_sfx()
 		current_level = null
 		player = null
 		level_orbs = 0
 		for c in collected.size():
 			collected[c] = false
 		start_game()
+	else:
+		play_cancel_ui_sfx()
 
 # Go to next unlocked level
 func _on_next_level_button_pressed() -> void:
 	current_level_index = min(current_level_index + 1, max_level_reached)
 	if current_level_index >= 0 and current_level_index < levels.size():
+		play_accept_ui_sfx()
 		current_level = null
 		player = null
 		level_orbs = 0
 		for c in collected.size():
 			collected[c] = false
 		start_game()
+	else:
+		play_cancel_ui_sfx()
 
-
-# Resume game from pause
 func _on_resume_button_pressed() -> void:
 	get_tree().paused = false
 	update_ui()
+	GameManager.play_cancel_ui_sfx()
 
 func unload_game() -> void:
+	animated_sprite_a.visible = false
+	animated_sprite_b.visible = false
+	animated_sprite_c.visible = false
+	animated_sprite_orbs.visible = false
+	orbs_collected_label.visible = false
+	pause_panel.visible = false
 	get_tree().paused = false
-	update_ui()
-	if not current_level:
-		return
-	# TODO unload things and save
-	pass
 
 func load_main_menu() -> void:
 	unload_game()
@@ -353,6 +362,7 @@ func load_level_select_menu() -> void:
 	get_tree().change_scene_to_file("res://scenes/level_select_menu.tscn")
 
 func _on_return_menu_button_pressed() -> void:
+	GameManager.play_accept_ui_sfx()
 	load_main_menu()
 	
 func start_music() -> void:
@@ -411,3 +421,30 @@ func load_data() -> bool:
 		return false
 	
 	return true
+
+func play_cancel_ui_sfx() -> void:
+	cancel_uisfx.play()
+	
+func play_accept_ui_sfx() -> void:
+	accept_uisfx.play()
+
+func play_select_ui_sfx() -> void:
+	select_uisfx.play()
+	
+	
+
+
+func _on_previous_level_button_focus_entered() -> void:
+	GameManager.play_select_ui_sfx()
+
+
+func _on_next_level_button_focus_entered() -> void:
+	GameManager.play_select_ui_sfx()
+
+
+func _on_resume_button_focus_entered() -> void:
+	GameManager.play_select_ui_sfx()
+
+
+func _on_return_menu_button_focus_entered() -> void:
+	GameManager.play_select_ui_sfx()
