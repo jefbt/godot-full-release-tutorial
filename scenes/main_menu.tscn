@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://dftujjtg2c66m"]
+
+[ext_resource type="Script" uid="uid://von2j7nfgado" path="res://scripts/main_menu.gd" id="1_ekxnf"]
+[ext_resource type="Texture2D" uid="uid://cytnupr41t5te" path="res://assets/ui/AllSocialText.png" id="1_l6cm7"]
+
+[node name="MainMenu" type="Control" unique_id=24863980]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ekxnf")
+
+[node name="StartButton" type="Button" parent="." unique_id=1048004770]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -48.0
+offset_top = 32.0
+offset_right = 48.0
+offset_bottom = 63.0
+grow_horizontal = 2
+text = "Start Game"
+
+[node name="QuitButton" type="Button" parent="." unique_id=680523051]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -50.0
+offset_right = 48.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Quit Game"
+
+[node name="CreditsButton" type="Button" parent="." unique_id=499812354]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -89.0
+offset_right = 48.0
+offset_bottom = -58.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Credits"
+
+[node name="SettingsButton" type="Button" parent="." unique_id=14519073]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -128.0
+offset_right = 48.0
+offset_bottom = -97.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Settings
+"
+
+[node name="AllSocialText" type="Sprite2D" parent="." unique_id=52307094]
+position = Vector2(317, 194)
+scale = Vector2(0.06252928, 0.06252927)
+texture = ExtResource("1_l6cm7")
+
+[node name="LinkButton" type="LinkButton" parent="." unique_id=1624825369]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -130.0
+offset_top = -43.0
+offset_right = -6.0
+offset_bottom = -3.0
+grow_horizontal = 0
+grow_vertical = 0
+uri = "https://linktr.ee/tomazellagames"

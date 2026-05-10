@@ -99,6 +99,7 @@ func ground_movement(delta: float) -> void:
 			if ab_distance < 20.0 or has_wall or has_not_ground:
 				velocity.y = jump_velocity
 				jump_sfx.play()
+				GameManager.call_jump_vfx(global_position)
 	else:
 		if is_on_floor():
 			if last_direction > 0:

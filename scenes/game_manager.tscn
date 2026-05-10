@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://bar17yd7g1hao" path="res://assets/audio/coin_2.wav" id="10_30v7y"]
 [ext_resource type="AudioStream" uid="uid://c4pqwka50aupy" path="res://assets/audio/coin_3.wav" id="11_5xtl8"]
 [ext_resource type="AudioStream" uid="uid://cxkilm5tg6mmk" path="res://assets/audio/coin_4.wav" id="12_cjvif"]
+[ext_resource type="AudioStream" uid="uid://btv7tnuwqf3j6" path="res://assets/audio/Three Red Hearts Box Jump.ogg" id="13_lcbjr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fcr5y"]
 atlas = ExtResource("2_glms7")
@@ -174,7 +175,6 @@ animations = [{
 [node name="GameManager" type="Node" unique_id=84670456]
 process_mode = 3
 script = ExtResource("1_hwd4i")
-start_on_level = 4
 levels = Array[String](["res://levels/level_000.tscn", "res://levels/level_001.tscn", "res://levels/level_002.tscn", "res://levels/level_003.tscn", "res://levels/level_004.tscn", "res://levels/level_005.tscn", "res://levels/level_006.tscn", "res://levels/level_998.tscn", "res://levels/level_999.tscn"])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1943039409]
@@ -325,6 +325,10 @@ bus = &"SFX"
 
 [node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=1817762191]
 current = true
+
+[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1605526727]
+stream = ExtResource("13_lcbjr")
+bus = &"Music"
 
 [connection signal="pressed" from="CanvasLayer/PausePanel/PreviousLevelButton" to="." method="_on_previous_level_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PausePanel/NextLevelButton" to="." method="_on_next_level_button_pressed"]

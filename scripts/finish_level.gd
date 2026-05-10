@@ -18,4 +18,4 @@ func on_get_all_collectibles() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player and not is_finished and can_finish:
 		is_finished = true
-		GameManager.on_level_finished()
+		GameManager.on_level_finished(global_position + Vector2(8, -16))

@@ -19,12 +19,31 @@ extends Node
 @onready var previous_level_button: Button = $CanvasLayer/PausePanel/PreviousLevelButton
 @onready var next_level_button: Button = $CanvasLayer/PausePanel/NextLevelButton
 @onready var resume_button: Button = 	$CanvasLayer/PausePanel/ResumeButton
-@onready var creature_knockout_sfx: AudioStreamPlayer2D = $CreatureKnockoutSFX
 @onready var orb_sfx: AudioStreamPlayer2D = $OrbSFX
 @onready var gem_asfx: AudioStreamPlayer2D = $GemASFX
 @onready var gem_bsfx: AudioStreamPlayer2D = $GemBSFX
 @onready var gem_csfx: AudioStreamPlayer2D = $GemCSFX
 @onready var level_finish_sfx: AudioStreamPlayer2D = $LevelFinishSFX
+@onready var music_player: AudioStreamPlayer2D = $MusicPlayer
+
+const THREE_RED_HEARTS_BOX_JUMP = preload("res://assets/audio/Three Red Hearts Box Jump.ogg")
+const THREE_RED_HEARTS_CANDY = preload("res://assets/audio/Three Red Hearts Candy.ogg")
+const THREE_RED_HEARTS_DEEP_BLUE = preload("res://assets/audio/Three Red Hearts Deep Blue.ogg")
+const THREE_RED_HEARTS_PENGUIN_TOWN = preload("res://assets/audio/Three Red Hearts Penguin Town.ogg")
+const THREE_RED_HEARTS_PRINCESS_QUEST = preload("res://assets/audio/Three Red Hearts Princess Quest.ogg")
+const THREE_RED_HEARTS_RABBIT_TOWN = preload("res://assets/audio/Three Red Hearts Rabbit Town.ogg")
+const THREE_RED_HEARTS_SANCTUARY = preload("res://assets/audio/Three Red Hearts Sanctuary.ogg")
+const VFX_BASE = preload("res://scenes/vfx.tscn")
+
+var random_songs: Array = [
+	THREE_RED_HEARTS_BOX_JUMP,
+	THREE_RED_HEARTS_CANDY,
+	THREE_RED_HEARTS_DEEP_BLUE,
+	THREE_RED_HEARTS_PENGUIN_TOWN,
+	THREE_RED_HEARTS_PRINCESS_QUEST,
+	THREE_RED_HEARTS_RABBIT_TOWN,
+	THREE_RED_HEARTS_SANCTUARY,
+]
 
 # Level configuration
 @export var levels_path: String = "res://levels"
@@ -88,8 +107,11 @@ func start_game() -> void:
 	get_tree().change_scene_to_file(levels[current_level_index])
 	update_ui()
 	level_start_time = Time.get_ticks_msec()
-
-
+	music_player.stop()
+	music_player.stream = random_songs.pick_random()
+	await get_tree().process_frame
+	music_player.play()
+	
 # Set the current level and reset level-specific state
 func set_level(level: Level) -> void:
 	current_level = level
@@ -104,10 +126,27 @@ func set_level(level: Level) -> void:
 func set_player(_player: Player) -> void:
 	player = _player
 
-# Handle level completion - update stats and load next level
-func on_level_finished() -> void:
-	level_finish_sfx.play()
+func call_jump_vfx(pos: Vector2) -> void:
+	_call_vfx("jump", pos)
+
+func call_hit_vfx(pos: Vector2) -> void:
+	_call_vfx("hit", pos, false, true)
 	
+func call_collect_vfx(pos: Vector2) -> void:
+	var vfx = _call_vfx("collect", pos)
+	vfx.scale = Vector2.ONE * 2
+
+func _call_vfx(animation: String, pos: Vector2, flip: bool = false, random_flip: bool = false) -> VFX:
+	var vfx = VFX_BASE.instantiate() as VFX
+	vfx.start_vfx(animation)
+	current_level.add_child(vfx)
+	if flip or (random_flip and randf() <= 0.5):
+		vfx.animated_sprite.flip_h = true
+	vfx.global_position = pos
+	return vfx
+	
+# Handle level completion - update stats and load next level
+func on_level_finished(pos: Vector2) -> void:
 	var level_time = Time.get_ticks_msec() - level_start_time
 	if level_time < time_on_level[current_level_index] or time_on_level[current_level_index] < 0:
 		time_on_level[current_level_index] = level_time
@@ -124,6 +163,12 @@ func on_level_finished() -> void:
 	total_orbs = 0
 	for o in orbs_on_level:
 		total_orbs += o
+		
+	get_tree().paused = true
+	level_finish_sfx.play()
+	var vfx = _call_vfx("finish", pos)
+	vfx.process_mode = Node.PROCESS_MODE_ALWAYS
+	await vfx.animated_sprite.animation_finished
 	
 	# TODO make level transition/loading screen etc
 	current_level_index += 1
@@ -146,12 +191,15 @@ func collect(collectible: Collectible) -> void:
 	if collectible.type == Collectible.Type.A:
 		collected[0] = true
 		gem_asfx.play()
+		call_collect_vfx(collectible.global_position)
 	if collectible.type == Collectible.Type.B:
 		collected[1] = true
 		gem_bsfx.play()
+		call_collect_vfx(collectible.global_position)
 	if collectible.type == Collectible.Type.C:
 		collected[2] = true
 		gem_csfx.play()
+		call_collect_vfx(collectible.global_position)
 	if current_level:
 		current_level.on_collected(collectible)
 		var can_finish_level: bool = true
@@ -161,8 +209,6 @@ func collect(collectible: Collectible) -> void:
 				break
 		if can_finish_level:
 			current_level.on_get_all_collectibles()
-	# TODO player collect vfx and sfx
-	# TODO check all collectibles
 	collectible.queue_free()
 	update_ui()
 
@@ -192,7 +238,7 @@ func respawn_player() -> void:
 
 # Handle creature being defeated
 func creature_knockout(creature: Creature, _source: Node2D) -> void:
-	# TODO make animation and stuff
+	call_hit_vfx(creature.global_position)
 	creature.queue_free()
 
 # Initialize game manager - set up UI and load level list

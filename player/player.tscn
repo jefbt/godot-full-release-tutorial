@@ -137,12 +137,9 @@ position_smoothing_enabled = true
 
 [node name="JumpSFX" type="AudioStreamPlayer2D" parent="." unique_id=2072144551]
 stream = ExtResource("3_g1dw6")
-bus = &"SFX"
 
 [node name="KnockoutSFX" type="AudioStreamPlayer2D" parent="." unique_id=1165935943]
 stream = ExtResource("4_yw30f")
-bus = &"SFX"
 
 [node name="CreatureKnockoutSFX" type="AudioStreamPlayer2D" parent="." unique_id=2143421889]
 stream = ExtResource("5_qjkh3")
-bus = &"SFX"

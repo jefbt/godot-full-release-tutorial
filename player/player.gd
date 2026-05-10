@@ -46,7 +46,6 @@ func knocked_out_creature() -> void:
 	creature_knockout_sfx.play()
 	is_jumping = false
 	velocity.y = -JUMP_VELOCITY * 1.8
-	# TODO audio (on creature)
 
 # Initialize player and register with game manager
 func _ready() -> void:
@@ -106,6 +105,7 @@ func _physics_process(delta: float) -> void:
 			else:
 				velocity.y = -JUMP_VELOCITY
 			jump_sfx.play()
+			GameManager.call_jump_vfx(global_position)
 		if Input.is_action_pressed("jump") and is_jumping:
 			velocity.y += delta * (-JUMP_VELOCITY) * 2.4
 			if Time.get_ticks_msec() > max_jump_time:
