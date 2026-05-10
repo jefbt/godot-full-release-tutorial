@@ -98,6 +98,7 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if not is_knocked_out:
 		if Input.is_action_just_pressed("jump") and can_coyote_jump:
+			can_coyote_jump = false
 			is_jumping = true
 			max_jump_time = Time.get_ticks_msec() + MAX_JUMP_TIME * 1000
 			if velocity.y <= 0:
